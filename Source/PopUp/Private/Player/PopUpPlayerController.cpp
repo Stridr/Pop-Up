@@ -4,6 +4,8 @@
 #include "Player/PopUpPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Character/PlayerCharacter.h"
+#include "GameFramework/Character.h"
 
 void APopUpPlayerController::BeginPlay()
 {
@@ -32,17 +34,13 @@ void APopUpPlayerController::SetupInputComponent()
 
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
 	EnhancedInputComponent->BindAction(
-		MoveAction,
-		ETriggerEvent::Triggered,
-		this,
-		&APopUpPlayerController::Move
-	);
+		MoveAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Move);
 	EnhancedInputComponent->BindAction(
-		LookAction,
-		ETriggerEvent::Triggered,
-		this,
-		&APopUpPlayerController::Look
-	);
+		LookAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Look);
+	EnhancedInputComponent->BindAction(
+		JumpAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Jump);
+	EnhancedInputComponent->BindAction(
+		JumpAction, ETriggerEvent::Completed, this, &APopUpPlayerController::StopJumping);
 }
 
 void APopUpPlayerController::Move(const FInputActionValue& Value)
@@ -74,6 +72,17 @@ void APopUpPlayerController::Look(const FInputActionValue& Value)
 
 void APopUpPlayerController::Jump(const FInputActionValue& Value)
 {
+	ACharacter* ControlledCharacter = GetPawn<ACharacter>();
+	check(ControlledCharacter)
+	ControlledCharacter->Jump();
+}
+
+void APopUpPlayerController::StopJumping(const FInputActionValue& Value)
+
+{
+	ACharacter* ControlledCharacter = GetPawn<ACharacter>();
+	check(ControlledCharacter)
+	ControlledCharacter->StopJumping();
 }
 
 void APopUpPlayerController::Crouch(const FInputActionValue& Value)
