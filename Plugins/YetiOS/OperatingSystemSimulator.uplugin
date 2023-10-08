@@ -1,0 +1,142 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "3.1.1",
+	"FriendlyName": "Operating System Simulator",
+	"Description": "🖥 Simulation of Operating System installation, Devices, System Hardware, Multiple Users, Programs, BSOD and more.\\nIncluded with this plugin are programs such as Terminal (including Terminal Commands), Web Browser, File Explorer etc.",
+	"Category": "YetiTech Studios",
+	"CreatedBy": "YetiTech Studios",
+	"CreatedByURL": "https://yetitechstudios.com/",
+	"DocsURL": "https://docs.yetitechstudios.com/",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/f7b61d843b8e4b0a84079cb383073cc9",
+	"SupportURL": "https://discord.yetitechstudios.com/",
+	"EngineVersion": "5.3.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "GlobalCore",
+			"Type": "Runtime",
+			"LoadingPhase": "EarliestPossible",
+			"PlatformAllowList": [
+				"Win64",
+				"Mac",
+				"Linux",
+				"LinuxArm64",
+				"Android",
+				"IOS"
+			]
+		},
+		{
+			"Name": "InternetBrowserUMG",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64",
+				"Mac",
+				"Linux",
+				"LinuxArm64",
+				"Android",
+				"IOS"
+			]
+		},
+		{
+			"Name": "DraggableWindowUMG",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64",
+				"Mac",
+				"Linux",
+				"LinuxArm64",
+				"Android",
+				"IOS"
+			]
+		},
+		{
+			"Name": "OperatingSystemSimulator",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64",
+				"Mac",
+				"Linux",
+				"LinuxArm64",
+				"Android",
+				"IOS"
+			]
+		},
+		{
+			"Name": "OperatingSystemEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [
+				"Win64",
+				"Mac",
+				"Linux"
+			]
+		},
+		{
+			"Name": "GlobalMessenger",
+			"Type": "Runtime",
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [
+				"Win64",
+				"Mac",
+				"Linux",
+				"LinuxArm64",
+				"Android",
+				"IOS"
+			]
+		},
+		{
+			"Name": "GlobalMessengerEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [
+				"Win64",
+				"Mac",
+				"Linux"
+			]
+		},
+		{
+			"Name": "ViewportWorlds",
+			"Type": "Runtime",
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [
+				"Win64",
+				"Mac",
+				"Linux",
+				"LinuxArm64",
+				"Android",
+				"IOS"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "CommonUI",
+			"Enabled": true
+		},
+		{
+			"Name": "WebBrowserWidget",
+			"Enabled": true
+		},
+		{
+			"Name": "ElectraPlayer",
+			"Enabled": true
+		},
+		{
+			"Name": "WmfMedia",
+			"Enabled": false
+		},
+		{
+			"Name": "GameplayTagsEditor",
+			"Enabled": true
+		},
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		}
+	]
+}
