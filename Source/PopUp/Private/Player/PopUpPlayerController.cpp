@@ -4,7 +4,6 @@
 #include "Player/PopUpPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
-#include "Character/PlayerCharacter.h"
 #include "GameFramework/Character.h"
 
 void APopUpPlayerController::BeginPlay()
@@ -19,13 +18,6 @@ void APopUpPlayerController::BeginPlay()
 	check(Subsystem);
 
 	Subsystem->AddMappingContext(PlayerContext, 0);
-
-	// bShowMouseCursor = false;
-	//
-	// FInputModeGameAndUI InputModeData;
-	// InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::LockInFullscreen);
-	// InputModeData.SetHideCursorDuringCapture(true);
-	// SetInputMode(InputModeData);
 }
 
 void APopUpPlayerController::SetupInputComponent()
@@ -41,6 +33,10 @@ void APopUpPlayerController::SetupInputComponent()
 		JumpAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Jump);
 	EnhancedInputComponent->BindAction(
 		JumpAction, ETriggerEvent::Completed, this, &APopUpPlayerController::StopJumping);
+	EnhancedInputComponent->BindAction(
+		CrouchAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Crouch);
+	EnhancedInputComponent->BindAction(
+		InteractAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Interact);
 }
 
 void APopUpPlayerController::Move(const FInputActionValue& Value)
@@ -72,19 +68,27 @@ void APopUpPlayerController::Look(const FInputActionValue& Value)
 
 void APopUpPlayerController::Jump(const FInputActionValue& Value)
 {
-	ACharacter* ControlledCharacter = GetPawn<ACharacter>();
-	check(ControlledCharacter)
-	ControlledCharacter->Jump();
+	if (auto* ControlledCharacter = GetPawn<ACharacter>())
+	{
+		ControlledCharacter->Jump();
+	}
 }
 
 void APopUpPlayerController::StopJumping(const FInputActionValue& Value)
 
 {
-	ACharacter* ControlledCharacter = GetPawn<ACharacter>();
-	check(ControlledCharacter)
-	ControlledCharacter->StopJumping();
+	if (auto* ControlledCharacter = GetPawn<ACharacter>())
+	{
+		ControlledCharacter->StopJumping();
+	}
 }
 
 void APopUpPlayerController::Crouch(const FInputActionValue& Value)
 {
+	UE_LOG(LogTemp, Warning, TEXT("Crouch"));
+}
+
+void APopUpPlayerController::Interact(const FInputActionValue& Value)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Interact"));
 }
