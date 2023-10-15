@@ -48,7 +48,7 @@ void APopUpPlayerController::Move(const FInputActionValue& Value)
 	const FVector ForwardVector = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 	const FVector RightVector = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
-	if (APawn* ControlledPawn = GetPawn())
+	if (APawn* ControlledPawn = GetPawn<APawn>())
 	{
 		ControlledPawn->AddMovementInput(ForwardVector, MoveVector.Y);
 		ControlledPawn->AddMovementInput(RightVector, MoveVector.X);
@@ -58,7 +58,7 @@ void APopUpPlayerController::Move(const FInputActionValue& Value)
 void APopUpPlayerController::Look(const FInputActionValue& Value)
 {
 	const FVector2D LookAxisVector = Value.Get<FVector2D>();
-	if (APawn* ControlledPawn = GetPawn())
+	if (APawn* ControlledPawn = GetPawn<APawn>())
 	{
 		ControlledPawn->AddControllerYawInput(LookAxisVector.X);
 		ControlledPawn->AddControllerPitchInput(LookAxisVector.Y);

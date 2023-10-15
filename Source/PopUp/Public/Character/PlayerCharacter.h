@@ -17,9 +17,6 @@ class POPUP_API APlayerCharacter : public ACharacterBase
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* PlayerCamera;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
-	USpringArmComponent* CameraBoom;
-
 public:
 	APlayerCharacter();
 };

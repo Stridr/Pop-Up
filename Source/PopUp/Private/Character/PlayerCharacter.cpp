@@ -14,16 +14,13 @@ APlayerCharacter::APlayerCharacter()
 	bUseControllerRotationRoll = false;
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
-	GetCharacterMovement()->RotationRate = FRotator(0.f, 500.f, 0.f);
-
-	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-	CameraBoom->SetupAttachment(RootComponent);
-	CameraBoom->bUsePawnControlRotation = true;
+	// bOrientRotationToMovement is needed to enable true first person perspective
+	// in order to disable the character rotating to the forward vector and messing
+	// with the animations we need to set the rotation rate to zero
+	GetCharacterMovement()->RotationRate = FRotator::ZeroRotator;
 
 	PlayerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	PlayerCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
-
 	PlayerCamera->SetupAttachment(GetMesh(), TEXT("head"));
-	PlayerCamera->bUsePawnControlRotation = true;
 	PlayerCamera->bAutoActivate = true;
+	PlayerCamera->bUsePawnControlRotation = true;
 }
