@@ -84,16 +84,20 @@ void APopUpPlayerController::Look(const FInputActionValue& Value)
 
 void APopUpPlayerController::Jump(const FInputActionValue& Value)
 {
-	if (auto* ControlledCharacter = GetPawn<ACharacter>())
+	if (ACharacter* ControlledCharacter = GetPawn<ACharacter>())
 	{
+		if (ControlledCharacter->bIsCrouched)
+		{
+			ControlledCharacter->UnCrouch();
+		}
+
 		ControlledCharacter->Jump();
 	}
 }
 
 void APopUpPlayerController::StopJumping(const FInputActionValue& Value)
-
 {
-	if (auto* ControlledCharacter = GetPawn<ACharacter>())
+	if (ACharacter* ControlledCharacter = GetPawn<ACharacter>())
 	{
 		ControlledCharacter->StopJumping();
 	}
