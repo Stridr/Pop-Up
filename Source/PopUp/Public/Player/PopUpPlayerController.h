@@ -11,7 +11,7 @@ class UInputAction;
 class UInputMappingContext;
 struct FInputActionValue;
 
-UCLASS()
+UCLASS(Blueprintable)
 class POPUP_API APopUpPlayerController : public APlayerController
 {
 	GENERATED_BODY()
@@ -19,6 +19,13 @@ class POPUP_API APopUpPlayerController : public APlayerController
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
+
+public:
+	UPROPERTY(BlueprintReadOnly, Category="CharacterTurning")
+	bool IsTurningRight = false;
+
+	UPROPERTY(BlueprintReadOnly, Category="CharacterTurning")
+	bool IsTurningLeft = false;
 
 private:
 	UPROPERTY(EditAnywhere, Category="Input")

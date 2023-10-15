@@ -34,7 +34,7 @@ void APopUpPlayerController::SetupInputComponent()
 	EnhancedInputComponent->BindAction(
 		JumpAction, ETriggerEvent::Completed, this, &APopUpPlayerController::StopJumping);
 	EnhancedInputComponent->BindAction(
-		CrouchAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Crouch);
+		CrouchAction, ETriggerEvent::Completed, this, &APopUpPlayerController::Crouch);
 	EnhancedInputComponent->BindAction(
 		InteractAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Interact);
 }
@@ -60,6 +60,22 @@ void APopUpPlayerController::Look(const FInputActionValue& Value)
 	const FVector2D LookAxisVector = Value.Get<FVector2D>();
 	if (APawn* ControlledPawn = GetPawn<APawn>())
 	{
+		if (LookAxisVector.X > 0.3)
+		{
+			IsTurningLeft = false;
+			IsTurningRight = true;
+		}
+		else if (LookAxisVector.X < -0.3)
+		{
+			IsTurningLeft = true;
+			IsTurningRight = false;
+		}
+		else
+		{
+			IsTurningLeft = false;
+			IsTurningRight = false;
+		}
+
 		ControlledPawn->AddControllerYawInput(LookAxisVector.X);
 		ControlledPawn->AddControllerPitchInput(LookAxisVector.Y);
 		ControlledPawn->SetActorRotation(GetControlRotation());
@@ -85,7 +101,18 @@ void APopUpPlayerController::StopJumping(const FInputActionValue& Value)
 
 void APopUpPlayerController::Crouch(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Crouch"));
+	if (auto* ControlledCharacter = GetPawn<ACharacter>())
+	{
+		if (ControlledCharacter->bIsCrouched)
+		{
+			ControlledCharacter->UnCrouch();
+		}
+		else
+		{
+			ControlledCharacter->Crouch();
+		}
+		UE_LOG(LogTemp, Warning, TEXT("bIsCrouched: %d"), ControlledCharacter->bIsCrouched);
+	}
 }
 
 void APopUpPlayerController::Interact(const FInputActionValue& Value)
