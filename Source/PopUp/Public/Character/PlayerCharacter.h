@@ -10,9 +10,7 @@
 #include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "PlayerCharacter.generated.h"
 
-
-
-
+class UQuestLogComponent;
 class USpringArmComponent;
 class UCameraComponent;
 
@@ -47,6 +45,9 @@ class POPUP_API APlayerCharacter : public ACharacterBase
 public:
 	APlayerCharacter();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quest Log")
+	UQuestLogComponent* QuestLog;
+
 	FORCEINLINE bool IsInteracting() const {return GetWorldTimerManager().IsTimerActive(TimerHandle_Interaction);};
 
 	FORCEINLINE UInventoryComponent* GetInventory()const {return PlayerInventory;};
@@ -58,8 +59,6 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 protected:
-
-
 	UPROPERTY()
 	AInventoryHUD* HUD;
 		
@@ -76,9 +75,6 @@ protected:
 
 	UPROPERTY(VisibleAnywhere,Category="Character | Inventory")
 	UInventoryComponent* PlayerInventory;
-
-	
-
 
 	void PerformInteractionCheck();
 	void FoundInteractable(AActor* NewInteractable);
