@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "InteractionInterface.h"
+#include "Interface/InteractionInterface.h"
 #include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 
 

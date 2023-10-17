@@ -1,10 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "InventoryToolTip.h"
-#include "InventoryItemSlot.h"
-#include "ItemBase.h"
-
+#include "Inventory/InventoryToolTip.h"
+#include "Inventory/InventoryItemSlot.h"
+#include "Data/ItemDataStructs.h"
 
 
 void UInventoryToolTip::NativeConstruct()

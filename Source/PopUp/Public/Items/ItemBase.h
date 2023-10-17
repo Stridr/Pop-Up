@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ItemDataStructs.h"
+#include "ItemDataStructs.generated.h"
 #include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "ItemBase.generated.h"
 

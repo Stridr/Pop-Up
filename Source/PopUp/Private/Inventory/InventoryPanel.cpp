@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "InventoryPanel.h"
+#include "Inventory/InventoryPanel.h"
 
-#include "ItemBase.h"
-#include "ItemDragDropOperation.h"
-#include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+#include "Items/ItemBase.h"
+#include "Inventory/ItemDragDropOperation.h"
+#include "TP_ThirdPerson/TP_ThirdPersonCharacter.generated.h"
 
 void UInventoryPanel::NativeOnInitialized()
 {

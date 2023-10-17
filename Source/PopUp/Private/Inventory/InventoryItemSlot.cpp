@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "InventoryItemSlot.h"
+#include "Inventory/InventoryItemSlot.h"
 
-#include "DragItemVisual.h"
-#include "InventoryToolTip.h"
-#include "ItemDragDropOperation.h"
+#include "Inventory/DragItemVisual.h"
+#include "Inventory/InventoryToolTip.h"
+#include "Inventory/ItemDragDropOperation.h"
 
 void UInventoryItemSlot::NativeOnInitialized()
 {

@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MainMenu.h"
+#include "Interface/MainMenu.h"
 
-#include "ItemBase.h"
+#include "Items/ItemBase.h"
 #include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
-#include "ItemDragDropOperation.h"
+#include "Inventory/ItemDragDropOperation.h"
 
 void UMainMenu::NativeOnInitialized()
 {

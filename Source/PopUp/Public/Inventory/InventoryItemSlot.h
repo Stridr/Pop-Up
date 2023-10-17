@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ItemBase.h"
+#include "Items/ItemBase.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Border.h"
 #include "Components/Image.h"

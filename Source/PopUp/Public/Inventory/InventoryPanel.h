@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "InventoryComponent.h"
+#include "InventoryComponent.generated.h"
 #include "InventoryItemSlot.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "InventoryItemSlot.h"
-#include "ItemBase.h"
+#include "Items/ItemBase.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
 #include "InventoryToolTip.generated.h"

@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "InventoryHUD.h"
+#include "Interface/InventoryHUD.h"
 
-#include "InteractionWidget.h"
-#include "MainMenu.h"
+#include "Interface/InteractionWidget.h"
+#include "Interface/MainMenu.h"
 
 AInventoryHUD::AInventoryHUD(): bIsMenuVisible(false), MainMenuWidget(nullptr), InteractionWidget(nullptr)
 {
