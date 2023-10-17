@@ -2,7 +2,7 @@
 
 
 #include "Interface/InteractionInterface.h"
-#include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 
 
 // Add default functionality here for any IInteractionInterface functions that are not pure virtual.

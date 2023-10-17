@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Interface/InteractionInterface.h"
 #include "GameFramework/Actor.h"
-#include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "PickUp.generated.h"
 
 class UDataTable;

@@ -4,6 +4,7 @@
 #include "Interface/InteractionWidget.h"
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
+#include "Interface/InteractionInterface.h"
 
 void UInteractionWidget::NativeOnInitialized()
 {

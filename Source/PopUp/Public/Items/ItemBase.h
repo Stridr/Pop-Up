@@ -3,10 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ItemDataStructs.generated.h"
-#include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+#include "Data/ItemDataStructs.h"
+#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "ItemBase.generated.h"
 
+class ATP_ThirdPersonCharacter;
 class UInventoryComponent;
 /**
  * 

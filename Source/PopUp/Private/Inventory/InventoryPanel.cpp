@@ -3,9 +3,11 @@
 
 #include "Inventory/InventoryPanel.h"
 
+#include "Components/InventoryComponent.h"
 #include "Items/ItemBase.h"
 #include "Inventory/ItemDragDropOperation.h"
-#include "TP_ThirdPerson/TP_ThirdPersonCharacter.generated.h"
+#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+
 
 void UInventoryPanel::NativeOnInitialized()
 {

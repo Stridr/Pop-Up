@@ -4,7 +4,7 @@
 #include "Interface/MainMenu.h"
 
 #include "Items/ItemBase.h"
-#include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "Inventory/ItemDragDropOperation.h"
 
 void UMainMenu::NativeOnInitialized()

@@ -4,10 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "InteractionWidget.generated.h"
 
-class ATP_ThirdPersonCharacter;
 struct FInteractableData;
 
 class UProgressBar;

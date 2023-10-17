@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/InventoryComponent.h"
 #include "GameFramework/Character.h"
+#include "Interface/InteractionInterface.h"
+#include "Interface/InventoryHUD.h"
 #include "Logging/LogMacros.h"
-#include "PopUp/InteractionInterface.h"
-#include "PopUp/InventoryComponent.h"
-#include "PopUp/InventoryHUD.h"
 #include "TP_ThirdPersonCharacter.generated.h"
 
 class AInventoryHUD;

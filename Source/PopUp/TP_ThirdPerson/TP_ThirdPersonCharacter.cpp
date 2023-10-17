@@ -2,7 +2,7 @@
 //game
 #include "TP_ThirdPersonCharacter.h"
 #include "Engine/LocalPlayer.h"
-#include "PopUp/InventoryComponent.h"
+#include "Components/InventoryComponent.h"
 
 
 
@@ -17,7 +17,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Camera/CameraComponent.h"
 #include "DrawDebugHelpers.h"
-#include "PopUp/PickUp.h"
+#include "World/PickUp.h"
 
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
