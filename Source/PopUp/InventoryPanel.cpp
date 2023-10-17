@@ -4,6 +4,7 @@
 #include "InventoryPanel.h"
 
 #include "ItemBase.h"
+#include "ItemDragDropOperation.h"
 #include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 
 void UInventoryPanel::NativeOnInitialized()
@@ -53,5 +54,10 @@ void UInventoryPanel::RefreshInventory()
 bool UInventoryPanel::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent,
 	UDragDropOperation* InOperation)
 {
-	return Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);
+	const UItemDragDropOperation* ItemDragDrop = Cast<UItemDragDropOperation>(InOperation);
+	if(ItemDragDrop->SourceItem && InventoryReference)
+	{
+		return true;
+	}
+	return false;
 }
