@@ -4,6 +4,7 @@
 #include "Character/PlayerCharacter.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "QuestSystem/QuestLogComponent.h"
 
 APlayerCharacter::APlayerCharacter()
 {
@@ -14,7 +15,7 @@ APlayerCharacter::APlayerCharacter()
 	GetCharacterMovement()->GetNavAgentPropertiesRef().bCanCrouch = true;
 	// TODO: if crouching is enabled the character capsule height has to be decreased
 	// TODO: check behaviour of crouching<=>jumping transition withing a few ticks
-	
+
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	// bOrientRotationToMovement is needed to enable true first person perspective
 	// in order to disable the character rotating to the forward vector and messing
@@ -25,4 +26,7 @@ APlayerCharacter::APlayerCharacter()
 	PlayerCamera->SetupAttachment(GetMesh(), TEXT("head"));
 	PlayerCamera->bAutoActivate = true;
 	PlayerCamera->bUsePawnControlRotation = true;
+
+	QuestLog = CreateDefaultSubobject<UQuestLogComponent>(TEXT("QuestLog"));
+	QuestLog->Activate();
 }

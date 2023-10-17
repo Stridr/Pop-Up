@@ -38,3 +38,11 @@ bool UQuestLogComponent::QueryActiveQuest(const FName QuestId) const
 {
 	return CurrentActiveQuests.Contains(QuestId);
 }
+
+void UQuestLogComponent::CompleteQuest(const FName QuestId)
+{
+}
+
+void UQuestLogComponent::TrackQuest(const FName QuestId)
+{
+}

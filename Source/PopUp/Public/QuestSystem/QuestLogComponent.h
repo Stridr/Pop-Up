@@ -23,21 +23,20 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 
-private:
-	UPROPERTY()
-	TArray<FName> CurrentActiveQuests;
-
-	UPROPERTY()
-	TArray<FName> CompletedQuests;
-
-	UPROPERTY()
-	FName CurrentTrackedQuest;
-
-	UPROPERTY()
-	TArray<AQuestActorBase*> CurrentQuests;
-
-	void AddNewQuest(const FName QuestId);
 	bool QueryActiveQuest(const FName QuestId) const;
+	void AddNewQuest(const FName QuestId);
 	void CompleteQuest(const FName QuestId);
 	void TrackQuest(const FName QuestId);
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Quest Log")
+	TArray<FName> CurrentActiveQuests;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Quest Log")
+	TArray<FName> CompletedQuests;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Quest Log")
+	FName CurrentTrackedQuest;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Quest Log")
+	TArray<AQuestActorBase*> CurrentQuests;
 };

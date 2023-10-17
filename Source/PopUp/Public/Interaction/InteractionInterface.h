@@ -19,5 +19,5 @@ class POPUP_API IInteractionInterface
 
 public:
 	virtual void LookAt() = 0;
-	virtual void InteractWith() = 0;
+	virtual FString InteractWith() = 0;
 };

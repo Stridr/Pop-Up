@@ -6,6 +6,7 @@
 #include "Character/CharacterBase.h"
 #include "PlayerCharacter.generated.h"
 
+class UQuestLogComponent;
 class USpringArmComponent;
 class UCameraComponent;
 
@@ -19,4 +20,7 @@ class POPUP_API APlayerCharacter : public ACharacterBase
 
 public:
 	APlayerCharacter();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quest Log")
+	UQuestLogComponent* QuestLog;
 };
