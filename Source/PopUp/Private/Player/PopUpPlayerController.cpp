@@ -6,6 +6,7 @@
 #include "EnhancedInputComponent.h"
 #include "Character/PlayerCharacter.h"
 #include "GameFramework/Character.h"
+#include "Interaction/InteractionInterface.h"
 #include "Character/PlayerCharacter.h"
 
 void APopUpPlayerController::BeginPlay()
@@ -22,6 +23,15 @@ void APopUpPlayerController::BeginPlay()
 	check(Subsystem);
 
 	Subsystem->AddMappingContext(PlayerContext, 0);
+
+	OnInteractionCalled.AddDynamic(this, &APopUpPlayerController::InteractDispatch);
+}
+
+void APopUpPlayerController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	InteractTrace();
 }
 
 void APopUpPlayerController::SetupInputComponent()
@@ -124,5 +134,41 @@ void APopUpPlayerController::Crouch(const FInputActionValue& Value)
 
 void APopUpPlayerController::Interact(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Interact"));
+	if (!LookAtActor) return;
+
+	LookAtActor->InteractWith();
+}
+
+void APopUpPlayerController::InteractDispatch()
+{
+	if (!LookAtActor) return;
+
+	LookAtActor->LookAt();
+}
+
+void APopUpPlayerController::InteractTrace()
+{
+	FHitResult HitResult;
+	FVector Start = PlayerCameraManager->GetCameraLocation();
+	FVector ForwardVector = PlayerCameraManager->GetCameraRotation().Vector();
+	FVector End = Start + ForwardVector * 2000.f;
+	FCollisionQueryParams TraceParams;
+
+	if (GetWorld()->LineTraceSingleByChannel(
+		HitResult, Start, End, ECC_Camera, TraceParams
+	))
+	{
+		DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 1, 0, 1);
+		AActor* HitActor = HitResult.GetActor();
+
+		if (HitActor->GetClass()->ImplementsInterface(UInteractionInterface::StaticClass()))
+		{
+			LookAtActor = Cast<IInteractionInterface>(HitActor);
+			OnInteractionCalled.Broadcast();
+		}
+		else
+		{
+			LookAtActor = nullptr;
+		}
+	}
 }
