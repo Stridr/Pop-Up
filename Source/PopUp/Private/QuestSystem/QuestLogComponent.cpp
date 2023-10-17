@@ -26,6 +26,7 @@ void UQuestLogComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 void UQuestLogComponent::AddNewQuest(const FName QuestId)
 {
 	CurrentActiveQuests.AddUnique(QuestId);
+	UE_LOG(LogTemp, Warning, TEXT("Added Quest: %s"), *QuestId.ToString());
 
 	if (AQuestActorBase* QuestActor = GetWorld()->SpawnActor<AQuestActorBase>(AQuestActorBase::StaticClass()))
 	{

@@ -27,6 +27,7 @@ void APopUpPlayerController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
+	// TODO: Throttle the trace somehow. It should only be able to happen once per interaction.
 	InteractTrace();
 }
 
@@ -151,6 +152,9 @@ void APopUpPlayerController::InteractTrace()
 	FVector End = Start + ForwardVector * 2000.f;
 	FCollisionQueryParams TraceParams;
 
+	// TODO: currently the capsule component is set to ignore camera trace
+	// this should be fine since the player mesh still blocks it, but it in
+	// case this causes issues we might have to set up a custom trace channel
 	if (GetWorld()->LineTraceSingleByChannel(
 		HitResult, Start, End, ECC_Camera, TraceParams
 	))

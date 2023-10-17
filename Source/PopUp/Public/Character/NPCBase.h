@@ -28,6 +28,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Quest Giver")
 	UQuestGiverComponent* QuestGiverComponent;
 
+	UFUNCTION(BlueprintCallable, Category="Interaction")
 	virtual void LookAt() override;
+
+	UFUNCTION(BlueprintCallable, Category="Interaction")
 	virtual FString InteractWith() override;
 };
