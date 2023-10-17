@@ -7,9 +7,12 @@
 #include "GameFramework/PlayerController.h"
 #include "PopUpPlayerController.generated.h"
 
+class IInteractionInterface;
 class UInputAction;
 class UInputMappingContext;
 struct FInputActionValue;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInteractionIdCalled);
 
 UCLASS(Blueprintable)
 class POPUP_API APopUpPlayerController : public APlayerController
@@ -18,6 +21,7 @@ class POPUP_API APopUpPlayerController : public APlayerController
 
 protected:
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
 	virtual void SetupInputComponent() override;
 
 public:
@@ -26,6 +30,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category="CharacterTurning")
 	bool IsTurningLeft = false;
+
+	UPROPERTY(BlueprintAssignable, Category="Events")
+	FOnInteractionIdCalled OnInteractionCalled;
 
 private:
 	UPROPERTY(EditAnywhere, Category="Input")
@@ -52,4 +59,10 @@ private:
 	void StopJumping(const FInputActionValue& Value);
 	void Crouch(const FInputActionValue& Value);
 	void Interact(const FInputActionValue& Value);
+
+	UFUNCTION()
+	void InteractDispatch();
+
+	void InteractTrace();
+	IInteractionInterface* LookAtActor = nullptr;
 };

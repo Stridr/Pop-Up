@@ -14,17 +14,12 @@ class POPUP_API UQuestGiverComponent : public UActorComponent, public IInteracti
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this component's properties
 	UQuestGiverComponent();
 
 protected:
-	// Called when the game starts
 	virtual void BeginPlay() override;
-	virtual void LookAt() override;
-	virtual FString InteractWith() override;
 
 public:
-	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 
@@ -32,4 +27,6 @@ public:
 	FDataTableRowHandle QuestData;
 
 	void DisplayQuest(const FName QuestId) const;
+	virtual void LookAt() override;
+	virtual FString InteractWith() override;
 };
