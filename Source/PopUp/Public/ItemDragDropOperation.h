@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/DragDropOperation.h"
+#include "PopUp/ItemBase.h"
 #include "ItemDragDropOperation.generated.h"
+
 
 /**
  * 

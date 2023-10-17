@@ -113,7 +113,7 @@ void ATP_ThirdPersonCharacter::  PerformInteractionCheck()
 	if (LookDirection>0)
 	{
 		
-		DrawDebugLine(GetWorld(),TraceStart,TraceEnd,FColor::Red,false,1.0f,0,1.0f);
+		//DrawDebugLine(GetWorld(),TraceStart,TraceEnd,FColor::Red,false,1.0f,0,1.0f);
 	
 		if(GetWorld()->LineTraceSingleByChannel(TraceHit,TraceStart,TraceEnd,ECC_Visibility,QueryParams))
 		{
