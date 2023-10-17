@@ -21,10 +21,10 @@ protected:
 public:
 	virtual void Tick(float DeltaTime) override;
 
-private:
 	UPROPERTY()
 	FName QuestId;
-
+	
+private:
 	UPROPERTY()
 	TArray<FQuestDetails> QuestDetails;
 
