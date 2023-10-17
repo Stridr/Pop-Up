@@ -27,6 +27,10 @@ public:
 	FDataTableRowHandle QuestData;
 
 	void DisplayQuest(const FName QuestId) const;
+
+	UFUNCTION(BlueprintCallable, Category="Interaction")
 	virtual void LookAt() override;
+
+	UFUNCTION(BlueprintCallable, Category="Interaction")
 	virtual FString InteractWith() override;
 };

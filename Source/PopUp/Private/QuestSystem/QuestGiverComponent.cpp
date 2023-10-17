@@ -21,6 +21,7 @@ void UQuestGiverComponent::BeginPlay()
 
 void UQuestGiverComponent::LookAt()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Looking at Quest Giver"));
 }
 
 
@@ -35,6 +36,7 @@ FString UQuestGiverComponent::InteractWith()
 	if (!PlayerCharacter->QuestLog->QueryActiveQuest(QuestData.RowName))
 	{
 		DisplayQuest(QuestData.RowName);
+		PlayerCharacter->QuestLog->AddNewQuest(QuestData.RowName);
 	}
 
 	// TODO: probably there should be a bit more of a robust system here

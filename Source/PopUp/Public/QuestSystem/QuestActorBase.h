@@ -17,23 +17,35 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY()
 	FName QuestId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Quest Data")
+	UDataTable* QuestDataTable;
 	
 private:
 	UPROPERTY()
-	TArray<FQuestDetails> QuestDetails;
+	FQuestDetails QuestDetails;
 
 	UPROPERTY()
-	int16 CurrentQuestStage;
+	FStageDetails CurrentStageDetails;
+
+	UPROPERTY()
+	int32 CurrentQuestStage;
 
 	UPROPERTY()
 	TMap<FString, int16> CurrentObjectiveProgress;
 
 	UPROPERTY()
 	bool bIsCompleted;
+
+	void GetQuestDetails();
+
+	UFUNCTION()
+	void ObjectiveIdHeard(const FString& ObjectiveId);
 };
