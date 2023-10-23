@@ -1,0 +1,15 @@
+{
+	"BuildId": "27405482",
+	"Modules": 
+	{
+		"DraggableWindowUMG": "UnrealEditor-DraggableWindowUMG.dylib",
+		"GlobalCore": "UnrealEditor-GlobalCore.dylib",
+		"GlobalMessenger": "UnrealEditor-GlobalMessenger.dylib",
+		"GlobalMessengerEditor": "UnrealEditor-GlobalMessengerEditor.dylib",
+		"InternetBrowserUMG": "UnrealEditor-InternetBrowserUMG.dylib",
+		"OperatingSystemEditor": "UnrealEditor-OperatingSystemEditor.dylib",
+		"OperatingSystemJSON": "UnrealEditor-OperatingSystemJSON.dylib",
+		"OperatingSystemSimulator": "UnrealEditor-OperatingSystemSimulator.dylib",
+		"ViewportWorlds": "UnrealEditor-ViewportWorlds.dylib"
+	}
+}
