@@ -1,0 +1,83 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+// IWYU pragma: private, include "Core/OperatingSystemDirectory.h"
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class IOperatingSystemExplorerInterface;
+class UObject;
+class UOperatingSystemDirectory;
+class UOperatingSystemFile;
+struct FGameplayTag;
+#ifdef OPERATINGSYSTEMSIMULATOR_OperatingSystemDirectory_generated_h
+#error "OperatingSystemDirectory.generated.h already included, missing '#pragma once' in OperatingSystemDirectory.h"
+#endif
+#define OPERATINGSYSTEMSIMULATOR_OperatingSystemDirectory_generated_h
+
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_SPARSE_DATA
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetAllFiles); \
+	DECLARE_FUNCTION(execGetChildDirectory); \
+	DECLARE_FUNCTION(execFindDirectoryByTag); \
+	DECLARE_FUNCTION(execGetInterfaceDisplayName); \
+	DECLARE_FUNCTION(execIsPartition); \
+	DECLARE_FUNCTION(execGetParentExplorerInterface); \
+	DECLARE_FUNCTION(execGetChildDirectories); \
+	DECLARE_FUNCTION(execGetDirectoryIconObject); \
+	DECLARE_FUNCTION(execIsSystemDirectory); \
+	DECLARE_FUNCTION(execGetDirectoryName);
+
+
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_ACCESSORS
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUOperatingSystemDirectory(); \
+	friend struct Z_Construct_UClass_UOperatingSystemDirectory_Statics; \
+public: \
+	DECLARE_CLASS(UOperatingSystemDirectory, UObject, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/OperatingSystemSimulator"), NO_API) \
+	DECLARE_SERIALIZER(UOperatingSystemDirectory) \
+	virtual UObject* _getUObject() const override { return const_cast<UOperatingSystemDirectory*>(this); }
+
+
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_ENHANCED_CONSTRUCTORS \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UOperatingSystemDirectory(UOperatingSystemDirectory&&); \
+	NO_API UOperatingSystemDirectory(const UOperatingSystemDirectory&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UOperatingSystemDirectory); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UOperatingSystemDirectory); \
+	DEFINE_ABSTRACT_DEFAULT_CONSTRUCTOR_CALL(UOperatingSystemDirectory) \
+	NO_API virtual ~UOperatingSystemDirectory();
+
+
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_16_PROLOG
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_SPARSE_DATA \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_ACCESSORS \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_INCLASS_NO_PURE_DECLS \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h_19_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> OPERATINGSYSTEMSIMULATOR_API UClass* StaticClass<class UOperatingSystemDirectory>();
+
+#undef CURRENT_FILE_ID
+#define CURRENT_FILE_ID FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Core_OperatingSystemDirectory_h
+
+
+PRAGMA_ENABLE_DEPRECATION_WARNINGS

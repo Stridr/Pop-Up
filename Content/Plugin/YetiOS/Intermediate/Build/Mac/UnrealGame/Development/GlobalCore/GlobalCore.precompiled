@@ -1,0 +1,8 @@
+{
+	"OutputFiles": [
+		"../../../arm64/UnrealGame/Development/GlobalCore/Module.GlobalCore.cpp.o",
+		"../../../arm64/UnrealGame/Development/GlobalCore/Module.GlobalCore.cpp.o",
+		"../../../x64/UnrealGame/Development/GlobalCore/Module.GlobalCore.cpp.o",
+		"../../../x64/UnrealGame/Development/GlobalCore/Module.GlobalCore.cpp.o"
+	]
+}

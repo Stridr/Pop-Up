@@ -1,0 +1,90 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+// IWYU pragma: private, include "Programs/OperatingSystemTerminalCommand.h"
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UObject;
+enum class EOperatingSystemTerminalMessageType : uint8;
+struct FGameplayTag;
+struct FGenericError;
+#ifdef OPERATINGSYSTEMSIMULATOR_OperatingSystemTerminalCommand_generated_h
+#error "OperatingSystemTerminalCommand.generated.h already included, missing '#pragma once' in OperatingSystemTerminalCommand.h"
+#endif
+#define OPERATINGSYSTEMSIMULATOR_OperatingSystemTerminalCommand_generated_h
+
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_15_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FOperatingSystemCommandFlag_Statics; \
+	OPERATINGSYSTEMSIMULATOR_API static class UScriptStruct* StaticStruct();
+
+
+template<> OPERATINGSYSTEMSIMULATOR_API UScriptStruct* StaticStruct<struct FOperatingSystemCommandFlag>();
+
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_SPARSE_DATA
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execHasFlag); \
+	DECLARE_FUNCTION(execRemoveMessageListener); \
+	DECLARE_FUNCTION(execListenToMessage); \
+	DECLARE_FUNCTION(execBroadcastMessage); \
+	DECLARE_FUNCTION(execGetCommandDescription); \
+	DECLARE_FUNCTION(execGetMainCommand); \
+	DECLARE_FUNCTION(execFinishCommand); \
+	DECLARE_FUNCTION(execNotifyTerminal); \
+	DECLARE_FUNCTION(execContinueExecution);
+
+
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_ACCESSORS
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_CALLBACK_WRAPPERS
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUOperatingSystemTerminalCommand(); \
+	friend struct Z_Construct_UClass_UOperatingSystemTerminalCommand_Statics; \
+public: \
+	DECLARE_CLASS(UOperatingSystemTerminalCommand, UObject, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/OperatingSystemSimulator"), NO_API) \
+	DECLARE_SERIALIZER(UOperatingSystemTerminalCommand) \
+	DECLARE_WITHIN(UOperatingSystemTerminal)
+
+
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_ENHANCED_CONSTRUCTORS \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UOperatingSystemTerminalCommand(UOperatingSystemTerminalCommand&&); \
+	NO_API UOperatingSystemTerminalCommand(const UOperatingSystemTerminalCommand&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UOperatingSystemTerminalCommand); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UOperatingSystemTerminalCommand); \
+	DEFINE_ABSTRACT_DEFAULT_CONSTRUCTOR_CALL(UOperatingSystemTerminalCommand) \
+	NO_API virtual ~UOperatingSystemTerminalCommand();
+
+
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_61_PROLOG
+#define FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_SPARSE_DATA \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_ACCESSORS \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_CALLBACK_WRAPPERS \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_INCLASS_NO_PURE_DECLS \
+	FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h_64_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> OPERATINGSYSTEMSIMULATOR_API UClass* StaticClass<class UOperatingSystemTerminalCommand>();
+
+#undef CURRENT_FILE_ID
+#define CURRENT_FILE_ID FID_build_U5M_Marketplace_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_OperatingSystemSimulator_Public_Programs_OperatingSystemTerminalCommand_h
+
+
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
