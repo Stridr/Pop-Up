@@ -3,16 +3,16 @@
 
 #include "Inventory/InventoryPanel.h"
 
+#include "Character/PlayerCharacter.h"
 #include "Components/InventoryComponent.h"
 #include "Items/ItemBase.h"
 #include "Inventory/ItemDragDropOperation.h"
-#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 
 
 void UInventoryPanel::NativeOnInitialized()
 {
 	Super::NativeOnInitialized();
-	PlayerCharacter = Cast<ATP_ThirdPersonCharacter>(GetOwningPlayerPawn());
+	PlayerCharacter = Cast<APlayerCharacter>(GetOwningPlayerPawn());
 	if(PlayerCharacter)
 	{
 		InventoryReference=PlayerCharacter->GetInventory();

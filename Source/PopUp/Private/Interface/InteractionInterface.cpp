@@ -22,6 +22,6 @@ void IInteractionInterface::EndInteract()
 {
 }
 
-void IInteractionInterface::Interact(ATP_ThirdPersonCharacter* PlayerCharacter)
+void IInteractionInterface::Interact(APlayerCharacter* PlayerCharacter)
 {
 }

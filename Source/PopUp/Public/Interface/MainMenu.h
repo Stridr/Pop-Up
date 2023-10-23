@@ -6,7 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "MainMenu.generated.h"
 
-class ATP_ThirdPersonCharacter;
+class APlayerCharacter;
+
 /**
  * 
  */
@@ -22,5 +23,5 @@ protected:
 
 public:
 	UPROPERTY()
-	ATP_ThirdPersonCharacter* PlayerCharacter;
+	APlayerCharacter* PlayerCharacter;
 };

@@ -3,9 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Character/PlayerCharacter.h"
 #include "Interface/InteractionInterface.h"
 #include "GameFramework/Actor.h"
-#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "PickUp.generated.h"
 
 class UDataTable;
@@ -62,11 +62,11 @@ protected:
 	//Functions
 	
 	virtual void BeginPlay() override;
-	virtual void Interact(ATP_ThirdPersonCharacter* PlayerCharacter) override;
+	virtual void Interact(APlayerCharacter* PlayerCharacter) override;
 	void UpdateInteractableData();
 
 	
-	void TakePickup(const ATP_ThirdPersonCharacter* Taker);
+	void TakePickup(const APlayerCharacter* Taker);
 #if WITH_EDITOR
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif

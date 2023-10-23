@@ -4,10 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Data/ItemDataStructs.h"
-#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "ItemBase.generated.h"
 
-class ATP_ThirdPersonCharacter;
+class APlayerCharacter;
 class UInventoryComponent;
 /**
  * 
@@ -74,7 +73,7 @@ public:
 	void SetQuantity (const int32 NewQuantity);
 	
 	UFUNCTION(Category="Item")
-	virtual  void Use(ATP_ThirdPersonCharacter* Character);
+	virtual  void Use(APlayerCharacter* Character);
 
 protected:
 	bool operator==(const FName& OtherID) const

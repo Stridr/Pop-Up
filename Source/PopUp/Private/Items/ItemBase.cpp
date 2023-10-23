@@ -48,6 +48,6 @@ void UItemBase::SetQuantity(const int32 NewQuantity)
 	}
 }
 
-void UItemBase::Use(ATP_ThirdPersonCharacter* Character)
+void UItemBase::Use(APlayerCharacter* Character)
 {
 }

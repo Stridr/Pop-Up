@@ -4,13 +4,17 @@
 #include "Player/PopUpPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Character/PlayerCharacter.h"
 #include "GameFramework/Character.h"
+#include "Character/PlayerCharacter.h"
 
 void APopUpPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
 	check(PlayerContext);
+
+	
 
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<
 		UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
@@ -35,8 +39,7 @@ void APopUpPlayerController::SetupInputComponent()
 		JumpAction, ETriggerEvent::Completed, this, &APopUpPlayerController::StopJumping);
 	EnhancedInputComponent->BindAction(
 		CrouchAction, ETriggerEvent::Completed, this, &APopUpPlayerController::Crouch);
-	EnhancedInputComponent->BindAction(
-		InteractAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Interact);
+	
 }
 
 void APopUpPlayerController::Move(const FInputActionValue& Value)

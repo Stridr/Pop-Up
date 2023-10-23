@@ -7,6 +7,7 @@
 #include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "InteractionWidget.generated.h"
 
+class APlayerCharacter;
 struct FInteractableData;
 
 class UProgressBar;
@@ -20,7 +21,7 @@ class POPUP_API UInteractionWidget : public UUserWidget
 public:
 
 	UPROPERTY(VisibleAnywhere,Category= "InteractionWidget | PlayerReference")
-	ATP_ThirdPersonCharacter* PlayerReference;
+	APlayerCharacter* PlayerReference;
 
 	void UpdateWidget(const FInteractableData* InteractableData) const;
 

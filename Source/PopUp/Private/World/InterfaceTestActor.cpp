@@ -59,7 +59,7 @@ void AInterfaceTestActor::EndInteract()
 	UE_LOG(LogTemp,Warning,TEXT("Calling beging interact override on interface test actor "));
 }
 
-void AInterfaceTestActor::Interact(ATP_ThirdPersonCharacter* PlayerCharacter)
+void AInterfaceTestActor::Interact(APlayerCharacter* PlayerCharacter)
 {
 	UE_LOG(LogTemp,Warning,TEXT("Calling beging interact override on interface test actor "));
 }

@@ -86,7 +86,7 @@ void APickUp::EndFocus()
 	
 }
 
-void APickUp::Interact(ATP_ThirdPersonCharacter* PlayerCharacter)
+void APickUp::Interact(APlayerCharacter* PlayerCharacter)
 {
 	if(PlayerCharacter)
 	{
@@ -97,7 +97,7 @@ void APickUp::Interact(ATP_ThirdPersonCharacter* PlayerCharacter)
 
 
 
-void APickUp::TakePickup(const ATP_ThirdPersonCharacter* Taker)
+void APickUp::TakePickup(const APlayerCharacter* Taker)
 {
 	if(!IsPendingKillPending())
 	{
