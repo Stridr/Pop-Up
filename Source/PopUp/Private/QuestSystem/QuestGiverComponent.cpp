@@ -21,7 +21,7 @@ void UQuestGiverComponent::BeginPlay()
 
 void UQuestGiverComponent::LookAt()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Looking at Quest Giver"));
+	// UE_LOG(LogTemp, Warning, TEXT("Looking at Quest Giver"));
 }
 
 

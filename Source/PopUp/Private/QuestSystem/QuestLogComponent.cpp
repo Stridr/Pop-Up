@@ -28,11 +28,16 @@ void UQuestLogComponent::AddNewQuest(const FName QuestId)
 	CurrentActiveQuests.AddUnique(QuestId);
 	UE_LOG(LogTemp, Warning, TEXT("Added Quest: %s"), *QuestId.ToString());
 
-	if (AQuestActorBase* QuestActor = GetWorld()->SpawnActor<AQuestActorBase>(AQuestActorBase::StaticClass()))
-	{
-		QuestActor->QuestId = QuestId;
-		CurrentQuests.Add(QuestActor);
-	}
+	AQuestActorBase* QuestActor = AQuestActorBase::CreateWithQuestId(GetWorld(), QuestId);
+	UE_LOG(LogTemp, Warning, TEXT("Spawned Quest Actor with QuestId: %s %s"), *QuestActor->GetName(),
+	       *QuestActor->QuestId.ToString());
+
+	// if (AQuestActorBase* QuestActor = GetWorld()->SpawnActor<AQuestActorBase>())
+	// {
+	// 	QuestActor->QuestId = QuestId;
+	// 	CurrentQuests.Add(QuestActor);
+	// 	UE_LOG(LogTemp, Warning, TEXT("Spawned Quest Actor: %s"), *QuestActor->QuestId.ToString());
+	// }
 }
 
 bool UQuestLogComponent::QueryActiveQuest(const FName QuestId) const

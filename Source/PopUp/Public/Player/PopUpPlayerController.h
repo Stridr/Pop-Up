@@ -12,7 +12,7 @@ class UInputAction;
 class UInputMappingContext;
 struct FInputActionValue;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInteractionIdCalled);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInteractionIdCalled, FString, ObjectiveId);
 
 UCLASS(Blueprintable)
 class POPUP_API APopUpPlayerController : public APlayerController
@@ -58,11 +58,14 @@ private:
 	void Jump(const FInputActionValue& Value);
 	void StopJumping(const FInputActionValue& Value);
 	void Crouch(const FInputActionValue& Value);
-	void Interact(const FInputActionValue& Value);
+	void StartInteraction(const FInputActionValue& Value);
+	void FinishInteraction(const FInputActionValue& Value);
 
 	UFUNCTION()
-	void InteractDispatch();
-
+	void InteractDispatch(FString ObjectiveId);
 	void InteractTrace();
 	IInteractionInterface* LookAtActor = nullptr;
+	bool bIsInteracting = false;
+	
+	FString InteractionId;
 };
