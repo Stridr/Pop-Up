@@ -7,6 +7,8 @@
 #include "GameFramework/Actor.h"
 #include "QuestActorBase.generated.h"
 
+class APopUpPlayerController;
+
 UCLASS()
 class POPUP_API AQuestActorBase : public AActor
 {
@@ -14,6 +16,16 @@ class POPUP_API AQuestActorBase : public AActor
 
 public:
 	AQuestActorBase();
+
+	static AQuestActorBase* CreateWithQuestId(UWorld* World, FName QuestId)
+	{
+		AQuestActorBase* QuestActor = World->SpawnActor<AQuestActorBase>();
+		if (QuestActor)
+		{
+			QuestActor->QuestId = QuestId;
+		}
+		return QuestActor;
+	}
 
 protected:
 	virtual void BeginPlay() override;
@@ -25,10 +37,9 @@ public:
 	UPROPERTY()
 	FName QuestId;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Quest Data")
-	UDataTable* QuestDataTable;
-	
 private:
+	UDataTable* QuestDataTable;
+
 	UPROPERTY()
 	FQuestDetails QuestDetails;
 
@@ -39,7 +50,7 @@ private:
 	int32 CurrentQuestStage;
 
 	UPROPERTY()
-	TMap<FString, int16> CurrentObjectiveProgress;
+	TMap<FString, int> CurrentObjectiveProgress;
 
 	UPROPERTY()
 	bool bIsCompleted;
@@ -47,5 +58,9 @@ private:
 	void GetQuestDetails();
 
 	UFUNCTION()
-	void ObjectiveIdHeard(const FString& ObjectiveId);
+	void ObjectiveIdHeard(FString ObjectiveId);
+
+	APopUpPlayerController* PlayerController;
+
+	FObjectiveDetails* GetObjectiveDataById(FString ObjectiveId);
 };

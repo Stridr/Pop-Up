@@ -47,7 +47,9 @@ void APopUpPlayerController::SetupInputComponent()
 	EnhancedInputComponent->BindAction(
 		CrouchAction, ETriggerEvent::Completed, this, &APopUpPlayerController::Crouch);
 	EnhancedInputComponent->BindAction(
-		InteractAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Interact);
+		InteractAction, ETriggerEvent::Started, this, &APopUpPlayerController::StartInteraction);
+	EnhancedInputComponent->BindAction(
+		InteractAction, ETriggerEvent::Completed, this, &APopUpPlayerController::FinishInteraction);
 }
 
 void APopUpPlayerController::Move(const FInputActionValue& Value)
@@ -130,18 +132,20 @@ void APopUpPlayerController::Crouch(const FInputActionValue& Value)
 	}
 }
 
-void APopUpPlayerController::Interact(const FInputActionValue& Value)
+void APopUpPlayerController::StartInteraction(const FInputActionValue& Value)
 {
-	if (!LookAtActor) return;
-
-	LookAtActor->InteractWith();
+	bIsInteracting = true;
 }
 
-void APopUpPlayerController::InteractDispatch()
+void APopUpPlayerController::FinishInteraction(const FInputActionValue& Value)
 {
-	if (!LookAtActor) return;
+	bIsInteracting = false;
+}
 
-	LookAtActor->LookAt();
+void APopUpPlayerController::InteractDispatch(FString ObjectiveId)
+{
+	InteractionId = ObjectiveId;
+	UE_LOG(LogTemp, Warning, TEXT("InteractionId: %s"), *InteractionId);
 }
 
 void APopUpPlayerController::InteractTrace()
@@ -165,7 +169,16 @@ void APopUpPlayerController::InteractTrace()
 		if (HitActor->GetClass()->ImplementsInterface(UInteractionInterface::StaticClass()))
 		{
 			LookAtActor = Cast<IInteractionInterface>(HitActor);
-			OnInteractionCalled.Broadcast();
+			if (LookAtActor)
+			{
+				// UE_LOG(LogTemp, Warning, TEXT("LookAtActor: %s"), *HitActor->GetName());
+				LookAtActor->LookAt();
+
+				if (bIsInteracting)
+				{
+					OnInteractionCalled.Broadcast(LookAtActor->InteractWith());
+				}
+			}
 		}
 		else
 		{
