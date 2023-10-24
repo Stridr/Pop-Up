@@ -27,9 +27,9 @@ void UObjectiveLocationComponent::OnOverlapBegin(UPrimitiveComponent* Overlapped
 
 	if (OtherActor && OtherActor == PlayerCharacter)
 	{
+		// objective id -> targetlocationtest
+		// location name -> Target Location Test
 		UE_LOG(LogTemp, Warning, TEXT("Overlap with player Begin"));
-		// TODO: NOT WORKING YET
-		// ensure that in blueprint the correct objective information is added
 		PlayerController->OnInteractionCalled.Broadcast(ObjectiveId);
 	}
 }
