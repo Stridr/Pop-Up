@@ -15,7 +15,7 @@ class POPUP_API UObjectiveLocationComponent : public UBoxComponent
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Objective")
-	FText ObjectiveName;
+	FText LocationName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Objective")
 	FString ObjectiveId;

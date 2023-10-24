@@ -27,7 +27,7 @@ void APopUpPlayerController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	// TODO: Throttle the trace somehow. It should only be able to happen once per interaction.
+	// TODO: Throttle the trace. It should only be able to happen once per interaction.
 	InteractTrace();
 }
 
