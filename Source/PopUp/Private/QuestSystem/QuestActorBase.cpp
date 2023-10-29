@@ -2,7 +2,6 @@
 
 
 #include "QuestSystem/QuestActorBase.h"
-
 #include "Player/PopUpPlayerController.h"
 
 AQuestActorBase::AQuestActorBase()
@@ -25,22 +24,20 @@ void AQuestActorBase::BeginPlay()
 	check(QuestId.IsValid());
 	GetQuestDetails();
 
-	APlayerController* WorldController = GetWorld()->GetFirstPlayerController();
-	check(WorldController);
+	// APlayerController* WorldController = GetWorld()->GetFirstPlayerController();
+	// check(WorldController);
 
-	PlayerController = Cast<APopUpPlayerController>(WorldController);
-	check(PlayerController);
-
-	// TODO: check if this is actually the correct way to do this. We need to get the objective Id
-	// from the interaction actor and then check if it is in the current stage's objectives.
-	PlayerController->OnInteractionCalled.AddDynamic(this, &AQuestActorBase::ObjectiveIdHeard);
+	// APopUpPlayerController* PlayerController = Cast<APopUpPlayerController>(WorldController);
+	// check(PlayerController);
+	//
+	// PlayerController->OnInteractionCalled.AddDynamic(this, &AQuestActorBase::ObjectiveIdHeard);
 }
 
 void AQuestActorBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
 
-	PlayerController->OnInteractionCalled.RemoveDynamic(this, &AQuestActorBase::ObjectiveIdHeard);
+	// PlayerController->OnInteractionCalled.RemoveDynamic(this, &AQuestActorBase::ObjectiveIdHeard);
 }
 
 void AQuestActorBase::Tick(float DeltaTime)

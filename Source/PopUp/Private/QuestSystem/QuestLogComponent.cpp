@@ -2,7 +2,7 @@
 
 
 #include "QuestSystem/QuestLogComponent.h"
-
+#include "Player/PopUpPlayerController.h"
 #include "QuestSystem/QuestActorBase.h"
 
 UQuestLogComponent::UQuestLogComponent()
@@ -26,18 +26,16 @@ void UQuestLogComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 void UQuestLogComponent::AddNewQuest(const FName QuestId)
 {
 	CurrentActiveQuests.AddUnique(QuestId);
-	UE_LOG(LogTemp, Warning, TEXT("Added Quest: %s"), *QuestId.ToString());
 
-	AQuestActorBase* QuestActor = AQuestActorBase::CreateWithQuestId(GetWorld(), QuestId);
-	UE_LOG(LogTemp, Warning, TEXT("Spawned Quest Actor with QuestId: %s %s"), *QuestActor->GetName(),
-	       *QuestActor->QuestId.ToString());
+	AQuestActorBase* NewQuest = GetWorld()->SpawnActor<AQuestActorBase>(QuestActorClass);
+	NewQuest->QuestId = QuestId;
 
-	// if (AQuestActorBase* QuestActor = GetWorld()->SpawnActor<AQuestActorBase>())
-	// {
-	// 	QuestActor->QuestId = QuestId;
-	// 	CurrentQuests.Add(QuestActor);
-	// 	UE_LOG(LogTemp, Warning, TEXT("Spawned Quest Actor: %s"), *QuestActor->QuestId.ToString());
-	// }
+	CurrentQuests.Add(NewQuest);
+
+	if (CurrentTrackedQuest.IsNone())
+	{
+		TrackQuest(QuestId);
+	}
 }
 
 bool UQuestLogComponent::QueryActiveQuest(const FName QuestId) const
@@ -47,8 +45,31 @@ bool UQuestLogComponent::QueryActiveQuest(const FName QuestId) const
 
 void UQuestLogComponent::CompleteQuest(const FName QuestId)
 {
+	// AQuestActorBase** PQuestActor = CurrentQuests.FindByPredicate([QuestId](AQuestActorBase* QuestActor)
+	// {
+	// 	if (QuestActor && QuestActor->QuestId == QuestId)
+	// 	{
+	// 		QuestActor->bIsCompleted = true;
+	// 		return true;
+	// 	}
+	// 	return false;
+	// });
+	//
+	// const bool bHasCompleted = PQuestActor != nullptr;
+	//
+	// if (CurrentActiveQuests.Find(QuestId) != INDEX_NONE && bHasCompleted)
+	// {
+	// 	CurrentActiveQuests.Remove(QuestId);
+	// 	CompletedQuests.Add(QuestId);
+	// 	UE_LOG(LogTemp, Warning, TEXT("Quest %p is complete"), &QuestId);
+	// }
 }
 
 void UQuestLogComponent::TrackQuest(const FName QuestId)
 {
+	CurrentTrackedQuest = QuestId;
 }
+
+// void UQuestLogComponent::ObjectiveIdHeard(FString ObjectiveId)
+// {
+// }
