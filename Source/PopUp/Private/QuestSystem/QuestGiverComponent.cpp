@@ -53,5 +53,7 @@ void UQuestGiverComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 
 void UQuestGiverComponent::DisplayQuest(const FName QuestId) const
 {
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan,
+	                                 FString::Printf(TEXT("Displaying Quest: %s"), *QuestId.ToString()));
 	UE_LOG(LogTemp, Warning, TEXT("Displaying Quest: %s"), *QuestId.ToString());
 }

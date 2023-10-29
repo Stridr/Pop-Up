@@ -6,7 +6,9 @@
 #include "EnhancedInputComponent.h"
 #include "Character/PlayerCharacter.h"
 #include "GameFramework/Character.h"
+#include "Interaction/InteractionActorBase.h"
 #include "Interaction/InteractionInterface.h"
+#include "QuestSystem/QuestLogComponent.h"
 #include "Character/PlayerCharacter.h"
 
 void APopUpPlayerController::BeginPlay()
@@ -24,7 +26,7 @@ void APopUpPlayerController::BeginPlay()
 
 	Subsystem->AddMappingContext(PlayerContext, 0);
 
-	OnInteractionCalled.AddDynamic(this, &APopUpPlayerController::InteractDispatch);
+	// OnObjectiveIDCalled.AddDynamic(this, &APopUpPlayerController::InteractDispatch);
 }
 
 void APopUpPlayerController::Tick(float DeltaSeconds)
@@ -51,9 +53,12 @@ void APopUpPlayerController::SetupInputComponent()
 	EnhancedInputComponent->BindAction(
 		CrouchAction, ETriggerEvent::Completed, this, &APopUpPlayerController::Crouch);
 	EnhancedInputComponent->BindAction(
-		InteractAction, ETriggerEvent::Started, this, &APopUpPlayerController::StartInteraction);
-	EnhancedInputComponent->BindAction(
-		InteractAction, ETriggerEvent::Completed, this, &APopUpPlayerController::FinishInteraction);
+		InteractAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Interact);
+
+	// EnhancedInputComponent->BindAction(
+	// 	InteractAction, ETriggerEvent::Started, this, &APopUpPlayerController::StartInteraction);
+	// EnhancedInputComponent->BindAction(
+	// 	InteractAction, ETriggerEvent::Completed, this, &APopUpPlayerController::FinishInteraction);
 }
 
 void APopUpPlayerController::Move(const FInputActionValue& Value)
@@ -136,21 +141,36 @@ void APopUpPlayerController::Crouch(const FInputActionValue& Value)
 	}
 }
 
-void APopUpPlayerController::StartInteraction(const FInputActionValue& Value)
+// void APopUpPlayerController::StartInteraction(const FInputActionValue& Value)
+// {
+// 	bIsInteracting = true;
+// }
+//
+// void APopUpPlayerController::FinishInteraction(const FInputActionValue& Value)
+// {
+// 	bIsInteracting = false;
+// }
+
+
+void APopUpPlayerController::Interact(const FInputActionValue& Value)
 {
-	bIsInteracting = true;
+	if (LookAtActor)
+	{
+		if (IInteractionInterface* Target = Cast<IInteractionInterface>(LookAtActor))
+		{
+			Target->InteractWith();
+			// OnObjectiveIDCalled.Broadcast(Target->InteractWith());
+			// OnObjectiveIDCalled.AddDynamic(this, &Target->InteractWith());
+		}
+	}
 }
 
-void APopUpPlayerController::FinishInteraction(const FInputActionValue& Value)
-{
-	bIsInteracting = false;
-}
 
-void APopUpPlayerController::InteractDispatch(FString ObjectiveId)
-{
-	InteractionId = ObjectiveId;
-	UE_LOG(LogTemp, Warning, TEXT("InteractionId: %s"), *InteractionId);
-}
+// void APopUpPlayerController::InteractDispatch(FString ObjectiveId)
+// {
+// 	InteractionId = ObjectiveId;
+// 	UE_LOG(LogTemp, Warning, TEXT("InteractionId: %s"), *InteractionId);
+// }
 
 void APopUpPlayerController::InteractTrace()
 {
@@ -168,20 +188,24 @@ void APopUpPlayerController::InteractTrace()
 	))
 	{
 		DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 1, 0, 1);
-		AActor* HitActor = HitResult.GetActor();
+		LookAtActor = HitResult.GetActor();
 
-		if (HitActor->GetClass()->ImplementsInterface(UInteractionInterface::StaticClass()))
+		if (LookAtActor->GetClass()->ImplementsInterface(UInteractionInterface::StaticClass()))
 		{
-			LookAtActor = Cast<IInteractionInterface>(HitActor);
-			if (LookAtActor)
-			{
-				// UE_LOG(LogTemp, Warning, TEXT("LookAtActor: %s"), *HitActor->GetName());
-				LookAtActor->LookAt();
+			// if (IInteractionInterface* Target = Cast<IInteractionInterface>(LookAtActor))
+			// {
+			// 	Target->LookAt();
+			// }
 
-				if (bIsInteracting)
+			if (AInteractionActorBase* Target = Cast<AInteractionActorBase>(LookAtActor))
+			{
+				Target->LookAt();
+				// get APlayerCharacter
+				if (APlayerCharacter* Player = GetPawn<APlayerCharacter>())
 				{
-					OnInteractionCalled.Broadcast(LookAtActor->InteractWith());
+					Target->OnObjectiveIDCalled.AddDynamic(this, Player->QuestLog->ObjectiveIdHeard);
 				}
+				// Target->OnObjectiveIDCalled.AddDynamic(this)
 			}
 		}
 		else

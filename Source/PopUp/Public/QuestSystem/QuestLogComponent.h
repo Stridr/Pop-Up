@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "QuestLogComponent.generated.h"
 
+class APopUpPlayerController;
 class AQuestActorBase;
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -23,9 +24,16 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 
+	UFUNCTION(BlueprintCallable, Category="Quest Log")
 	bool QueryActiveQuest(const FName QuestId) const;
+
+	UFUNCTION(BlueprintCallable, Category="Quest Log")
 	void AddNewQuest(const FName QuestId);
+
+	UFUNCTION(BlueprintCallable, Category="Quest Log")
 	void CompleteQuest(const FName QuestId);
+
+	UFUNCTION(BlueprintCallable, Category="Quest Log")
 	void TrackQuest(const FName QuestId);
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Quest Log")
@@ -39,4 +47,10 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Quest Log")
 	TArray<AQuestActorBase*> CurrentQuests;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Quest Log")
+	TSubclassOf<AQuestActorBase> QuestActorClass;
+
+	// UFUNCTION()
+	// void ObjectiveIdHeard(FString ObjectiveId);
 };

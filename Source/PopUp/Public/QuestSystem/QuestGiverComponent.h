@@ -23,9 +23,10 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Quest Data")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Quest Info")
 	FDataTableRowHandle QuestData;
 
+	UFUNCTION(BlueprintCallable, Category="Quest Info")
 	void DisplayQuest(const FName QuestId) const;
 
 	UFUNCTION(BlueprintCallable, Category="Interaction")

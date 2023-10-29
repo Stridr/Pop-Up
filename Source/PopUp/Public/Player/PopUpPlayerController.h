@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "InputActionValue.h"
 #include "GameFramework/PlayerController.h"
+#include "Interaction/InteractionInterface.h"
 #include "PopUpPlayerController.generated.h"
 
 class IInteractionInterface;
@@ -12,7 +13,7 @@ class UInputAction;
 class UInputMappingContext;
 struct FInputActionValue;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInteractionIdCalled, FString, ObjectiveId);
+// DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FObjectiveIDCalled, FString, ObjectiveId);
 
 UCLASS(Blueprintable)
 class POPUP_API APopUpPlayerController : public APlayerController
@@ -31,8 +32,8 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category="CharacterTurning")
 	bool IsTurningLeft = false;
 
-	UPROPERTY(BlueprintAssignable, Category="Events")
-	FOnInteractionIdCalled OnInteractionCalled;
+	// UPROPERTY(BlueprintAssignable)
+	// FObjectiveIDCalled OnObjectiveIDCalled;
 
 private:
 	UPROPERTY(EditAnywhere, Category="Input")
@@ -58,14 +59,11 @@ private:
 	void Jump(const FInputActionValue& Value);
 	void StopJumping(const FInputActionValue& Value);
 	void Crouch(const FInputActionValue& Value);
-	void StartInteraction(const FInputActionValue& Value);
-	void FinishInteraction(const FInputActionValue& Value);
+	void Interact(const FInputActionValue& Value);
 
 	UFUNCTION()
-	void InteractDispatch(FString ObjectiveId);
 	void InteractTrace();
-	IInteractionInterface* LookAtActor = nullptr;
-	bool bIsInteracting = false;
-	
-	FString InteractionId;
+
+	UPROPERTY()
+	AActor* LookAtActor = nullptr;
 };
