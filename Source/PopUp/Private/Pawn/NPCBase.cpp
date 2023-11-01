@@ -51,10 +51,3 @@ FString ANPCBase::InteractWith()
 	QuestGiverComponent->InteractWith();
 	return GetName();
 }
-
-// Called to bind functionality to input
-// void ANPCBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-// {
-// 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-//
-// }

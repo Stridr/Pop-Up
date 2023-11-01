@@ -23,8 +23,6 @@ void APopUpPlayerController::BeginPlay()
 	check(Subsystem);
 
 	Subsystem->AddMappingContext(PlayerContext, 0);
-
-	// OnObjectiveIDCalled.AddDynamic(this, &APopUpPlayerController::InteractDispatch);
 }
 
 void APopUpPlayerController::Tick(float DeltaSeconds)
@@ -52,11 +50,6 @@ void APopUpPlayerController::SetupInputComponent()
 		CrouchAction, ETriggerEvent::Completed, this, &APopUpPlayerController::Crouch);
 	EnhancedInputComponent->BindAction(
 		InteractAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Interact);
-
-	// EnhancedInputComponent->BindAction(
-	// 	InteractAction, ETriggerEvent::Started, this, &APopUpPlayerController::StartInteraction);
-	// EnhancedInputComponent->BindAction(
-	// 	InteractAction, ETriggerEvent::Completed, this, &APopUpPlayerController::FinishInteraction);
 }
 
 void APopUpPlayerController::Move(const FInputActionValue& Value)
@@ -139,17 +132,6 @@ void APopUpPlayerController::Crouch(const FInputActionValue& Value)
 	}
 }
 
-// void APopUpPlayerController::StartInteraction(const FInputActionValue& Value)
-// {
-// 	bIsInteracting = true;
-// }
-//
-// void APopUpPlayerController::FinishInteraction(const FInputActionValue& Value)
-// {
-// 	bIsInteracting = false;
-// }
-
-
 void APopUpPlayerController::Interact(const FInputActionValue& Value)
 {
 	if (LookAtActor)
@@ -157,18 +139,9 @@ void APopUpPlayerController::Interact(const FInputActionValue& Value)
 		if (IInteractionInterface* Target = Cast<IInteractionInterface>(LookAtActor))
 		{
 			Target->InteractWith();
-			// OnObjectiveIDCalled.Broadcast(Target->InteractWith());
-			// OnObjectiveIDCalled.AddDynamic(this, &Target->InteractWith());
 		}
 	}
 }
-
-
-// void APopUpPlayerController::InteractDispatch(FString ObjectiveId)
-// {
-// 	InteractionId = ObjectiveId;
-// 	UE_LOG(LogTemp, Warning, TEXT("InteractionId: %s"), *InteractionId);
-// }
 
 void APopUpPlayerController::InteractTrace()
 {
@@ -194,17 +167,6 @@ void APopUpPlayerController::InteractTrace()
 			{
 				Target->LookAt();
 			}
-
-			// if (AInteractionActorBase* Target = Cast<AInteractionActorBase>(LookAtActor))
-			// {
-			// 	Target->LookAt();
-			// 	// get APlayerCharacter
-			// 	if (APlayerCharacter* Player = GetPawn<APlayerCharacter>())
-			// 	{
-			// 		Target->OnObjectiveIDCalled.AddDynamic(this, Player->QuestLog->ObjectiveIdHeard);
-			// 	}
-			// 	// Target->OnObjectiveIDCalled.AddDynamic(this)
-			// }
 		}
 		else
 		{
