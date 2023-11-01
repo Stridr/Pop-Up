@@ -20,9 +20,6 @@ void AQuestActorBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// UE_LOG(LogTemp, Warning, TEXT("QuestId: %s"), *QuestId.ToString());
-	// GetQuestDetails();
-
 	OnObjectiveInteraction.AddDynamic(this, &AQuestActorBase::ObjectiveIdHeard);
 }
 
@@ -31,7 +28,7 @@ void AQuestActorBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	Super::EndPlay(EndPlayReason);
 
 	// TODO: check if this is needed if the delegate belongs to the same class instance	
-	// ObjectiveIDCalled.RemoveDynamic(this, &AQuestActorBase::ObjectiveIdHeard);
+	OnObjectiveInteraction.RemoveDynamic(this, &AQuestActorBase::ObjectiveIdHeard);
 }
 
 void AQuestActorBase::Tick(float DeltaTime)
@@ -70,7 +67,6 @@ void AQuestActorBase::GetQuestDetails()
 
 void AQuestActorBase::ObjectiveIdHeard(FString ObjectiveId)
 {
-	// add debug screen message about objective id
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan,
 	                                 FString::Printf(TEXT("ObjectiveIdHeard: %s"), *ObjectiveId));
 

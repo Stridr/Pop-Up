@@ -39,9 +39,6 @@ FString UQuestGiverComponent::InteractWith()
 		PlayerCharacter->QuestLog->AddNewQuest(QuestData.RowName);
 	}
 
-	// TODO: probably there should be a bit more of a robust system here
-	// I'm not sure if this will allow for multiple objectives with the same name
-	// the objective ID should also be more descriptive than just the owner name
 	return GetOwner()->GetName();
 }
 
@@ -55,5 +52,4 @@ void UQuestGiverComponent::DisplayQuest(const FName QuestId) const
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan,
 	                                 FString::Printf(TEXT("Displaying Quest: %s"), *QuestId.ToString()));
-	UE_LOG(LogTemp, Warning, TEXT("Displaying Quest: %s"), *QuestId.ToString());
 }
