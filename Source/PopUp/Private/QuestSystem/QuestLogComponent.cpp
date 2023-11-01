@@ -25,16 +25,21 @@ void UQuestLogComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 
 void UQuestLogComponent::AddNewQuest(const FName QuestId)
 {
-	CurrentActiveQuests.AddUnique(QuestId);
-
 	AQuestActorBase* NewQuest = GetWorld()->SpawnActor<AQuestActorBase>(QuestActorClass);
-	NewQuest->QuestId = QuestId;
-
-	CurrentQuests.Add(NewQuest);
-
-	if (CurrentTrackedQuest.IsNone())
+	if (NewQuest)
 	{
-		TrackQuest(QuestId);
+		NewQuest->Initialize(QuestId);
+		CurrentQuests.Add(NewQuest);
+		CurrentActiveQuests.AddUnique(QuestId);
+
+		if (CurrentTrackedQuest.IsNone())
+		{
+			TrackQuest(QuestId);
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Failed to spawn quest actor"));
 	}
 }
 
@@ -69,7 +74,3 @@ void UQuestLogComponent::TrackQuest(const FName QuestId)
 {
 	CurrentTrackedQuest = QuestId;
 }
-
-// void UQuestLogComponent::ObjectiveIdHeard(FString ObjectiveId)
-// {
-// }

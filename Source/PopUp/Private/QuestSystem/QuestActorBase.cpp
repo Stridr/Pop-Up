@@ -2,7 +2,6 @@
 
 
 #include "QuestSystem/QuestActorBase.h"
-#include "Player/PopUpPlayerController.h"
 
 AQuestActorBase::AQuestActorBase()
 {
@@ -21,23 +20,18 @@ void AQuestActorBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	check(QuestId.IsValid());
-	GetQuestDetails();
+	// UE_LOG(LogTemp, Warning, TEXT("QuestId: %s"), *QuestId.ToString());
+	// GetQuestDetails();
 
-	// APlayerController* WorldController = GetWorld()->GetFirstPlayerController();
-	// check(WorldController);
-
-	// APopUpPlayerController* PlayerController = Cast<APopUpPlayerController>(WorldController);
-	// check(PlayerController);
-	//
-	// PlayerController->OnInteractionCalled.AddDynamic(this, &AQuestActorBase::ObjectiveIdHeard);
+	OnObjectiveInteraction.AddDynamic(this, &AQuestActorBase::ObjectiveIdHeard);
 }
 
 void AQuestActorBase::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
 
-	// PlayerController->OnInteractionCalled.RemoveDynamic(this, &AQuestActorBase::ObjectiveIdHeard);
+	// TODO: check if this is needed if the delegate belongs to the same class instance	
+	// ObjectiveIDCalled.RemoveDynamic(this, &AQuestActorBase::ObjectiveIdHeard);
 }
 
 void AQuestActorBase::Tick(float DeltaTime)
@@ -45,8 +39,16 @@ void AQuestActorBase::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+void AQuestActorBase::Initialize(FName QuestIdToSet)
+{
+	QuestId = QuestIdToSet;
+	GetQuestDetails();
+}
+
 void AQuestActorBase::GetQuestDetails()
 {
+	UE_LOG(LogTemp, Warning, TEXT("QuestId: %s"), *QuestId.ToString());
+
 	const FQuestDetails* Details = QuestDataTable->FindRow<FQuestDetails>(QuestId, TEXT("QuestDetails"));
 	if (Details)
 	{
@@ -68,12 +70,15 @@ void AQuestActorBase::GetQuestDetails()
 
 void AQuestActorBase::ObjectiveIdHeard(FString ObjectiveId)
 {
-	if (const int* Find = CurrentObjectiveProgress.Find(ObjectiveId))
+	// add debug screen message about objective id
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan,
+	                                 FString::Printf(TEXT("ObjectiveIdHeard: %s"), *ObjectiveId));
+
+	const int* Find = CurrentObjectiveProgress.Find(ObjectiveId);
+
+	if (Find && Find < &GetObjectiveDataById(ObjectiveId)->Quantity)
 	{
-		if (Find < &GetObjectiveDataById(ObjectiveId)->Quantity)
-		{
-			CurrentObjectiveProgress.Add(ObjectiveId, *Find + 1);
-		}
+		CurrentObjectiveProgress.Add(ObjectiveId, *Find + 1);
 	}
 }
 

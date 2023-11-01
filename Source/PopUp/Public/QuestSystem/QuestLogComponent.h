@@ -50,7 +50,4 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Quest Log")
 	TSubclassOf<AQuestActorBase> QuestActorClass;
-
-	// UFUNCTION()
-	// void ObjectiveIdHeard(FString ObjectiveId);
 };

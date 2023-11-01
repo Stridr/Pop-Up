@@ -9,7 +9,7 @@
 
 class APopUpPlayerController;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FObjectiveIDCalled, FString, ObjectiveId);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FQuestObjectiveDelegate, FString, ObjectiveId);
 
 UCLASS()
 class POPUP_API AQuestActorBase : public AActor
@@ -26,6 +26,8 @@ protected:
 public:
 	virtual void Tick(float DeltaTime) override;
 
+	void Initialize(FName QuestIdToSet);
+
 	UPROPERTY()
 	FName QuestId;
 
@@ -37,6 +39,8 @@ public:
 
 	UPROPERTY()
 	TMap<FString, int> CurrentObjectiveProgress;
+
+	FQuestObjectiveDelegate OnObjectiveInteraction;
 
 private:
 	UPROPERTY()

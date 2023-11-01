@@ -4,11 +4,8 @@
 #include "Player/PopUpPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
-#include "Character/PlayerCharacter.h"
 #include "GameFramework/Character.h"
-#include "Interaction/InteractionActorBase.h"
 #include "Interaction/InteractionInterface.h"
-#include "QuestSystem/QuestLogComponent.h"
 
 void APopUpPlayerController::BeginPlay()
 {
@@ -189,21 +186,21 @@ void APopUpPlayerController::InteractTrace()
 
 		if (LookAtActor->GetClass()->ImplementsInterface(UInteractionInterface::StaticClass()))
 		{
-			// if (IInteractionInterface* Target = Cast<IInteractionInterface>(LookAtActor))
-			// {
-			// 	Target->LookAt();
-			// }
-
-			if (AInteractionActorBase* Target = Cast<AInteractionActorBase>(LookAtActor))
+			if (IInteractionInterface* Target = Cast<IInteractionInterface>(LookAtActor))
 			{
 				Target->LookAt();
-				// get APlayerCharacter
-				if (APlayerCharacter* Player = GetPawn<APlayerCharacter>())
-				{
-					Target->OnObjectiveIDCalled.AddDynamic(this, Player->QuestLog->ObjectiveIdHeard);
-				}
-				// Target->OnObjectiveIDCalled.AddDynamic(this)
 			}
+
+			// if (AInteractionActorBase* Target = Cast<AInteractionActorBase>(LookAtActor))
+			// {
+			// 	Target->LookAt();
+			// 	// get APlayerCharacter
+			// 	if (APlayerCharacter* Player = GetPawn<APlayerCharacter>())
+			// 	{
+			// 		Target->OnObjectiveIDCalled.AddDynamic(this, Player->QuestLog->ObjectiveIdHeard);
+			// 	}
+			// 	// Target->OnObjectiveIDCalled.AddDynamic(this)
+			// }
 		}
 		else
 		{

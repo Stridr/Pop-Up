@@ -8,7 +8,7 @@
 #include "QuestGiverComponent.generated.h"
 
 
-UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+UCLASS(Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class POPUP_API UQuestGiverComponent : public UActorComponent, public IInteractionInterface
 {
 	GENERATED_BODY()
