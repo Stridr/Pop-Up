@@ -35,6 +35,11 @@
 			"Name": "OperatingSystemSimulator",
 			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/f7b61d843b8e4b0a84079cb383073cc9"
+		},
+		{
+			"Name": "YetiOS",
+			"Enabled": false,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/b155eafe688c421e8cbf34a4bfa29342"
 		}
 	]
 }

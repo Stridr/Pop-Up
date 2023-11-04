@@ -24,7 +24,6 @@ enum class EInteractableType: uint8
 USTRUCT()
 struct FInteractableData
 {
-
 	GENERATED_BODY()
 
 	FInteractableData() :
@@ -36,7 +35,6 @@ struct FInteractableData
 	{
 		
 	};
-	
 	UPROPERTY(EditInstanceOnly)
 	EInteractableType InteractableType;
 
@@ -52,11 +50,33 @@ struct FInteractableData
 	//used for valves ,doors etc
 	UPROPERTY(EditInstanceOnly)
 	float InteractionDuration;
-
-
-	
 };
 
+USTRUCT()
+struct FInteractableDataDevice
+{
+	GENERATED_BODY()
+
+	FInteractableDataDevice() :
+	InteractableType(EInteractableType::Device),
+	Name(FText::GetEmpty()),
+	Action(FText::GetEmpty())
+	{
+		
+	};
+	UPROPERTY(EditInstanceOnly)
+	EInteractableType InteractableType;
+
+	UPROPERTY(EditInstanceOnly)
+	FText Name;
+
+	UPROPERTY(EditInstanceOnly)
+	FText Action;
+
+	
+	
+	
+};
 
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
