@@ -6,7 +6,7 @@
 #include "Data/ItemDataStructs.h"
 #include "ItemBase.generated.h"
 
-class APlayerCharacter;
+class APopUpPlayerController;
 class UInventoryComponent;
 /**
  * 
@@ -32,12 +32,6 @@ public:
 	
 	UPROPERTY(VisibleAnywhere,Category="Item")
 	EItemType ItemType;
-	
-	UPROPERTY(VisibleAnywhere,Category="Item")
-	EItemQuality ItemQuality;
-	
-	UPROPERTY(VisibleAnywhere,Category="Item")
-	FItemStatistics ItemStatistics;
 	
 	UPROPERTY(VisibleAnywhere,Category="Item")
 	FItemTextData TextData;
@@ -73,7 +67,7 @@ public:
 	void SetQuantity (const int32 NewQuantity);
 	
 	UFUNCTION(Category="Item")
-	virtual  void Use(APlayerCharacter* Character);
+	virtual  void Use(APopUpPlayerController* Character);
 
 protected:
 	bool operator==(const FName& OtherID) const

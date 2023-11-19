@@ -2,17 +2,18 @@
 
 
 #include "Inventory/InventoryPanel.h"
-
-#include "Character/PlayerCharacter.h"
 #include "Components/InventoryComponent.h"
 #include "Items/ItemBase.h"
 #include "Inventory/ItemDragDropOperation.h"
+#include "Player/PopUpPlayerController.h"
+
+
 
 
 void UInventoryPanel::NativeOnInitialized()
 {
 	Super::NativeOnInitialized();
-	PlayerCharacter = Cast<APlayerCharacter>(GetOwningPlayerPawn());
+	PlayerCharacter = Cast<APopUpPlayerController>(GetOwningPlayer());
 	if(PlayerCharacter)
 	{
 		InventoryReference=PlayerCharacter->GetInventory();

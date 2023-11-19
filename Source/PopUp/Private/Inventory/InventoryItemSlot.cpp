@@ -21,27 +21,6 @@ void UInventoryItemSlot::NativeOnInitialized()
 void UInventoryItemSlot::NativeConstruct()
 {
 	Super::NativeConstruct();
-	if(ItemReference)
-	{
-		switch (ItemReference->ItemQuality)
-		{
-		case EItemQuality::Shoody:
-			ItemBorder->SetBrushColor(FLinearColor::Gray);
-			break;
-		case EItemQuality::Common:
-			ItemBorder->SetBrushColor(FLinearColor::Green);
-			break;
-		case EItemQuality::Quality:
-			ItemBorder->SetBrushColor(FLinearColor::Blue);
-			break;
-		case EItemQuality::Masterwork:
-			ItemBorder->SetBrushColor(FLinearColor::Yellow);
-			break;
-		case EItemQuality::Grandmaster:
-			ItemBorder->SetBrushColor(FLinearColor(100.0f,65.0f,0.0f,1.0f));//orange 
-			break;
-		default: ;
-		}
 		ItemIcon->SetBrushFromTexture(ItemReference->AssetData.Icon);
 		if(ItemReference->ItemNumericData.bIsStackable)
 		{
@@ -52,7 +31,6 @@ void UInventoryItemSlot::NativeConstruct()
 			ItemQuantity->SetVisibility(ESlateVisibility::Collapsed);
 
 		}
-	}
 }
 
 FReply UInventoryItemSlot::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)

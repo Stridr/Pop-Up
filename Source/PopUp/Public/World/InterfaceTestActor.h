@@ -24,6 +24,9 @@ protected:
 	
 	UPROPERTY(EditAnywhere,Category="test actor")
 	UStaticMeshComponent* Mesh;
+	
+	UPROPERTY(EditAnywhere,Category="test actor")
+	UBlueprint* Blueprint;
 
 	UPROPERTY(EditInstanceOnly,Category="test actor")
 	FInteractableData InstanceInteractableData;
@@ -35,5 +38,5 @@ protected:
 	virtual void EndFocus() override;
 	virtual void BeginInteract() override;
 	virtual void EndInteract() override;
-	virtual void Interact(APlayerCharacter* PlayerCharacter) override;
+	virtual void Interact(APopUpPlayerController* PlayerCharacter) override;
 };

@@ -2,8 +2,6 @@
 
 
 #include "World/PickUp.h"
-
-#include "AsyncTreeDifferences.h"
 #include "Components/InventoryComponent.h"
 #include "Items/ItemBase.h"
 
@@ -32,10 +30,9 @@ void APickUp::InitializePickup(const TSubclassOf<UItemBase> BaseClass, const int
 		const FItemData* ItemData = ItemDataTable->FindRow<FItemData>(DesiredItemID,DesiredItemID.ToString());
 
 		ItemReference = NewObject<UItemBase>(this,BaseClass);
-
+		
 		ItemReference->ID = ItemData->ID;
 		ItemReference->ItemType = ItemData->ItemType;
-		ItemReference->ItemQuality = ItemData->ItemQuality;
 		ItemReference->ItemNumericData = ItemData->ItemNumericData;
 		ItemReference->TextData = ItemData->TextData;
 		ItemReference->AssetData = ItemData->AssetData;
@@ -43,6 +40,8 @@ void APickUp::InitializePickup(const TSubclassOf<UItemBase> BaseClass, const int
 		InQuantity <=0 ? ItemReference->SetQuantity(1) : ItemReference->SetQuantity(InQuantity);
 
 		PickupMesh->SetStaticMesh(ItemData->AssetData.Mesh);
+		
+		
 
 		UpdateInteractableData();
 		
@@ -86,7 +85,7 @@ void APickUp::EndFocus()
 	
 }
 
-void APickUp::Interact(APlayerCharacter* PlayerCharacter)
+void APickUp::Interact(APopUpPlayerController* PlayerCharacter)
 {
 	if(PlayerCharacter)
 	{
@@ -97,7 +96,7 @@ void APickUp::Interact(APlayerCharacter* PlayerCharacter)
 
 
 
-void APickUp::TakePickup(const APlayerCharacter* Taker)
+void APickUp::TakePickup(const APopUpPlayerController* Taker)
 {
 	if(!IsPendingKillPending())
 	{

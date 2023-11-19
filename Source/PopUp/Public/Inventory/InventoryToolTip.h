@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "InventoryItemSlot.h"
-#include "Items/ItemBase.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
 #include "InventoryToolTip.generated.h"
@@ -28,12 +27,6 @@ public:
 	UTextBlock* ItemType;
 	
 	UPROPERTY(meta=(BindWidget))
-	UTextBlock* DamageValue;
-	
-	UPROPERTY(meta=(BindWidget))
-	UTextBlock* ArmorRating;
-
-	UPROPERTY(meta=(BindWidget))
 	UTextBlock* UsageText;
 	
 	UPROPERTY(meta=(BindWidget))
@@ -44,9 +37,6 @@ public:
 
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* MaxStackSizeText;
-	
-	UPROPERTY(meta=(BindWidget))
-	UTextBlock* SellValue;
 	
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* StackWeight;

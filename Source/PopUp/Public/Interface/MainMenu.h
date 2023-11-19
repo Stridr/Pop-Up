@@ -6,7 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "MainMenu.generated.h"
 
-class APlayerCharacter;
+class APopUpPlayerController;
 
 /**
  * 
@@ -23,5 +23,5 @@ protected:
 
 public:
 	UPROPERTY()
-	APlayerCharacter* PlayerCharacter;
+	APopUpPlayerController* PlayerCharacter;
 };

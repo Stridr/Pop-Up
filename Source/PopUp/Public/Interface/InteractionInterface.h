@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Player/PopUpPlayerController.h"
 #include "UObject/Interface.h"
 #include "InteractionInterface.generated.h"
 
@@ -72,9 +73,6 @@ struct FInteractableDataDevice
 
 	UPROPERTY(EditInstanceOnly)
 	FText Action;
-
-	
-	
 	
 };
 
@@ -98,9 +96,10 @@ public:
 	virtual void EndFocus();
 	virtual void BeginInteract();
 	virtual void EndInteract();
-	virtual void Interact(APlayerCharacter* PlayerCharacter);
+	virtual void Interact(APopUpPlayerController* PlayerCharacter);
 
 	FInteractableData InteractableData;
+	FInteractableDataDevice InteractableDevice;
 
 	
 };
