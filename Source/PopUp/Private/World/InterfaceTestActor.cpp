@@ -10,7 +10,7 @@ AInterfaceTestActor::AInterfaceTestActor()
 	PrimaryActorTick.bCanEverTick = true;
 
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
-
+	Blueprint = CreateDefaultSubobject<UBlueprint>("Blueprint");
 	SetRootComponent(Mesh);
 	
 
@@ -59,7 +59,7 @@ void AInterfaceTestActor::EndInteract()
 	UE_LOG(LogTemp,Warning,TEXT("Calling beging interact override on interface test actor "));
 }
 
-void AInterfaceTestActor::Interact(APlayerCharacter* PlayerCharacter)
+void AInterfaceTestActor::Interact(APopUpPlayerController* PlayerCharacter)
 {
 	UE_LOG(LogTemp,Warning,TEXT("Calling beging interact override on interface test actor "));
 }

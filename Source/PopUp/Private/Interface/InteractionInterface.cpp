@@ -22,6 +22,6 @@ void IInteractionInterface::EndInteract()
 {
 }
 
-void IInteractionInterface::Interact(APlayerCharacter* PlayerCharacter)
+void IInteractionInterface::Interact(APopUpPlayerController* PlayerCharacter)
 {
 }

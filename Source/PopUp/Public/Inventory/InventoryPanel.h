@@ -35,7 +35,7 @@ public:
 	UTextBlock* CapacityInfo;
 
 	UPROPERTY()
-	APlayerCharacter* PlayerCharacter;
+	APopUpPlayerController* PlayerCharacter;
 
 	UPROPERTY()
 	UInventoryComponent* InventoryReference;

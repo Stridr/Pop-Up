@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Player/PopUpPlayerController.h"
 #include "UObject/Interface.h"
 #include "InteractionInterface.generated.h"
 
@@ -54,6 +55,21 @@ struct FInteractableData
 	float InteractionDuration;
 
 
+	FInteractableDataDevice() :
+	InteractableType(EInteractableType::Device),
+	Name(FText::GetEmpty()),
+	Action(FText::GetEmpty())
+	{
+		
+	};
+	UPROPERTY(EditInstanceOnly)
+	EInteractableType InteractableType;
+
+	UPROPERTY(EditInstanceOnly)
+	FText Name;
+
+	UPROPERTY(EditInstanceOnly)
+	FText Action;
 	
 };
 
@@ -78,9 +94,10 @@ public:
 	virtual void EndFocus();
 	virtual void BeginInteract();
 	virtual void EndInteract();
-	virtual void Interact(APlayerCharacter* PlayerCharacter);
+	virtual void Interact(APopUpPlayerController* PlayerCharacter);
 
 	FInteractableData InteractableData;
+	FInteractableDataDevice InteractableDevice;
 
 	
 };

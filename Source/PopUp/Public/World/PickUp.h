@@ -6,6 +6,7 @@
 #include "Character/PlayerCharacter.h"
 #include "Interface/InteractionInterface.h"
 #include "GameFramework/Actor.h"
+#include "Player/PopUpPlayerController.h"
 #include "PickUp.generated.h"
 
 class UDataTable;
@@ -44,6 +45,9 @@ protected:
 	UPROPERTY(VisibleAnywhere,Category= "Pickup | Components")
 	UStaticMeshComponent* PickupMesh;
 
+	UPROPERTY(VisibleAnywhere,Category= "Pickup | Components")
+	UStaticMeshComponent* Use;
+
 	UPROPERTY(EditInstanceOnly,Category= "Pickup | Item Initialization")
 	UDataTable* ItemDataTable;
 
@@ -62,11 +66,11 @@ protected:
 	//Functions
 	
 	virtual void BeginPlay() override;
-	virtual void Interact(APlayerCharacter* PlayerCharacter) override;
+	virtual void Interact(APopUpPlayerController* PlayerCharacter) override;
 	void UpdateInteractableData();
 
 	
-	void TakePickup(const APlayerCharacter* Taker);
+	void TakePickup(const APopUpPlayerController* Taker);
 #if WITH_EDITOR
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif

@@ -2,11 +2,9 @@
 
 
 #include "Interface/MainMenu.h"
-
-#include "Character/PlayerCharacter.h"
 #include "Items/ItemBase.h"
-#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "Inventory/ItemDragDropOperation.h"
+#include "Player/PopUpPlayerController.h"
 
 void UMainMenu::NativeOnInitialized()
 {
@@ -17,7 +15,7 @@ void UMainMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	PlayerCharacter = Cast<APlayerCharacter>(GetOwningPlayerPawn());
+	PlayerCharacter = Cast<APopUpPlayerController>(GetOwningPlayer());
 }
 
 bool UMainMenu::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent,UDragDropOperation* InOperation)

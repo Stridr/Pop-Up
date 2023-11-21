@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+#include "Player/PopUpPlayerController.h"
 #include "InteractionWidget.generated.h"
 
 class APlayerCharacter;

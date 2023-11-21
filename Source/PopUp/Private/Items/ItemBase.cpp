@@ -21,11 +21,9 @@ UItemBase* UItemBase::CreateItemCopy() const
 
 	ItemCopy->ID= this->ID;
 	ItemCopy->Quantity= this->Quantity;
-	ItemCopy->ItemQuality= this->ItemQuality;
 	ItemCopy->ItemType= this->ItemType;
 	ItemCopy->TextData= this->TextData;
 	ItemCopy->ItemNumericData= this->ItemNumericData;
-	ItemCopy->ItemStatistics= this->ItemStatistics;
 	ItemCopy->AssetData= this->AssetData;
 	ItemCopy->bIsCopy=true;
 
@@ -48,6 +46,6 @@ void UItemBase::SetQuantity(const int32 NewQuantity)
 	}
 }
 
-void UItemBase::Use(APlayerCharacter* Character)
+void UItemBase::Use(APopUpPlayerController* Character)
 {
 }
