@@ -4,7 +4,7 @@
 #include "World/PickUp.h"
 
 #include "AsyncTreeDifferences.h"
-#include "Components/InventoryComponent.h"
+#include "Inventory/InventoryComponent.h"
 #include "Items/ItemBase.h"
 
 
@@ -21,17 +21,40 @@ void APickUp::BeginPlay()
 {
 	Super::BeginPlay();
 
-	InitializePickup(UItemBase::StaticClass(),ItemQuantity);
-	
+	InitializePickup(UItemBase::StaticClass(), ItemQuantity);
+}
+
+void APickUp::LookAt()
+{
+	if (PickupMesh)
+	{
+		PickupMesh->SetRenderCustomDepth(true);
+	}
+}
+
+FString APickUp::InteractWith()
+{
+	if (const APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(
+		GetWorld()->GetFirstPlayerController()->GetPawn()))
+	{
+		TakePickup(PlayerCharacter);
+	}
+
+	if (PickupMesh)
+	{
+		PickupMesh->SetRenderCustomDepth(false);
+	}
+
+	return GetName();
 }
 
 void APickUp::InitializePickup(const TSubclassOf<UItemBase> BaseClass, const int32 InQuantity)
 {
-	if(ItemDataTable && !DesiredItemID.IsNone())
+	if (ItemDataTable && !DesiredItemID.IsNone())
 	{
-		const FItemData* ItemData = ItemDataTable->FindRow<FItemData>(DesiredItemID,DesiredItemID.ToString());
+		const FItemData* ItemData = ItemDataTable->FindRow<FItemData>(DesiredItemID, DesiredItemID.ToString());
 
-		ItemReference = NewObject<UItemBase>(this,BaseClass);
+		ItemReference = NewObject<UItemBase>(this, BaseClass);
 
 		ItemReference->ID = ItemData->ID;
 		ItemReference->ItemType = ItemData->ItemType;
@@ -40,20 +63,18 @@ void APickUp::InitializePickup(const TSubclassOf<UItemBase> BaseClass, const int
 		ItemReference->TextData = ItemData->TextData;
 		ItemReference->AssetData = ItemData->AssetData;
 
-		InQuantity <=0 ? ItemReference->SetQuantity(1) : ItemReference->SetQuantity(InQuantity);
+		InQuantity <= 0 ? ItemReference->SetQuantity(1) : ItemReference->SetQuantity(InQuantity);
 
 		PickupMesh->SetStaticMesh(ItemData->AssetData.Mesh);
 
 		UpdateInteractableData();
-		
 	}
-	
 }
 
 void APickUp::InitializeDrop(UItemBase* ItemToDrop, const int32 InQuantity)
 {
 	ItemReference = ItemToDrop;
-	InQuantity<=0 ? ItemReference->SetQuantity(1) : ItemReference->SetQuantity(InQuantity);
+	InQuantity <= 0 ? ItemReference->SetQuantity(1) : ItemReference->SetQuantity(InQuantity);
 	ItemReference->ItemNumericData.Weight = ItemToDrop->GetItemSingleWeight();
 	PickupMesh->SetStaticMesh(ItemToDrop->AssetData.Mesh);
 	UpdateInteractableData();
@@ -61,49 +82,47 @@ void APickUp::InitializeDrop(UItemBase* ItemToDrop, const int32 InQuantity)
 
 void APickUp::UpdateInteractableData()
 {
-	InstanceInteractableData.InteractableType =EInteractableType::Pickup;
+	InstanceInteractableData.InteractableType = EInteractableType::Pickup;
 	InstanceInteractableData.Action = ItemReference->TextData.InteractionText;
 	InstanceInteractableData.Name = ItemReference->TextData.Name;
 	InstanceInteractableData.Quantity = ItemReference->Quantity;
 	InteractableData = InstanceInteractableData;
 }
 
-void APickUp::BeginFocus()
-{
-	if(PickupMesh)
-	{
-		PickupMesh->SetRenderCustomDepth(true);
-	}
-	
-}
+// void APickUp::BeginFocus()
+// {
+// 	if(PickupMesh)
+// 	{
+// 		PickupMesh->SetRenderCustomDepth(true);
+// 	}
+// 	
+// }
+//
+// void APickUp::EndFocus()
+// {
+// 	if(PickupMesh)
+// 	{
+// 		PickupMesh->SetRenderCustomDepth(false);
+// 	}
+// 	
+// }
 
-void APickUp::EndFocus()
-{
-	if(PickupMesh)
-	{
-		PickupMesh->SetRenderCustomDepth(false);
-	}
-	
-}
-
-void APickUp::Interact(APlayerCharacter* PlayerCharacter)
-{
-	if(PlayerCharacter)
-	{
-		TakePickup(PlayerCharacter);
-	}
-}
-
-
+// void APickUp::Interact(APlayerCharacter* PlayerCharacter)
+// {
+// 	if (PlayerCharacter)
+// 	{
+// 		TakePickup(PlayerCharacter);
+// 	}
+// }
 
 
 void APickUp::TakePickup(const APlayerCharacter* Taker)
 {
-	if(!IsPendingKillPending())
+	if (!IsPendingKillPending())
 	{
-		if(ItemReference)
+		if (ItemReference)
 		{
-			if(UInventoryComponent* PlayerInventory = Taker->GetInventory())
+			if (UInventoryComponent* PlayerInventory = Taker->Inventory)
 			{
 				const FItemAddResult AddResult = PlayerInventory->HandleAddItem(ItemReference);
 
@@ -119,18 +138,17 @@ void APickUp::TakePickup(const APlayerCharacter* Taker)
 					Destroy();
 					break;
 				}
-				
-				UE_LOG(LogTemp,Warning,TEXT("%s"),*AddResult.ResultMessage.ToString());
+
+				UE_LOG(LogTemp, Warning, TEXT("%s"), *AddResult.ResultMessage.ToString());
 			}
 			else
 			{
-				UE_LOG(LogTemp,Warning,TEXT("PlayerInventory Component is null! "));
+				UE_LOG(LogTemp, Warning, TEXT("PlayerInventory Component is null! "));
 			}
 		}
 		else
 		{
-			UE_LOG(LogTemp,Warning,TEXT("PickUP internal item reference was null ! "));
-
+			UE_LOG(LogTemp, Warning, TEXT("PickUP internal item reference was null ! "));
 		}
 	}
 }
@@ -139,20 +157,19 @@ void APickUp::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent
 {
 	Super::PostEditChangeProperty(PropertyChangedEvent);
 
-	const FName ChangePropertyName = PropertyChangedEvent.Property ? PropertyChangedEvent.Property->GetFName() : NAME_None;
+	const FName ChangePropertyName = PropertyChangedEvent.Property
+		                                 ? PropertyChangedEvent.Property->GetFName()
+		                                 : NAME_None;
 
-	if(ChangePropertyName == GET_MEMBER_NAME_CHECKED(APickUp,DesiredItemID))
+	if (ChangePropertyName == GET_MEMBER_NAME_CHECKED(APickUp, DesiredItemID))
 	{
-		if(ItemDataTable)
-		{//const FString ContextString{DesiredItemID.ToString()};
-			if(const FItemData* ItemData = ItemDataTable->FindRow<FItemData>(DesiredItemID,DesiredItemID.ToString()))
+		if (ItemDataTable)
+		{
+			//const FString ContextString{DesiredItemID.ToString()};
+			if (const FItemData* ItemData = ItemDataTable->FindRow<FItemData>(DesiredItemID, DesiredItemID.ToString()))
 			{
 				PickupMesh->SetStaticMesh(ItemData->AssetData.Mesh);
 			}
 		}
 	}
-	
 }
-
-
-

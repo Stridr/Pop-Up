@@ -8,6 +8,8 @@
 #include "Interaction/InteractionInterface.h"
 #include "PopUpPlayerController.generated.h"
 
+class AInventoryHUD;
+class UItemBase;
 class IInteractionInterface;
 class UInputAction;
 class UInputMappingContext;
@@ -60,10 +62,16 @@ private:
 	void StopJumping(const FInputActionValue& Value);
 	void Crouch(const FInputActionValue& Value);
 	void Interact(const FInputActionValue& Value);
+	void ToogleMenu();
+	void DropItem(UItemBase* ItemToDrop, const int32 QuantityToDrop);
+
 
 	UFUNCTION()
 	void InteractTrace();
 
 	UPROPERTY()
 	AActor* LookAtActor = nullptr;
+
+	UPROPERTY()
+	AInventoryHUD* HUD;
 };

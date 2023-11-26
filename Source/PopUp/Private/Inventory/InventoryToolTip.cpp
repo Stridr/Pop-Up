@@ -3,7 +3,7 @@
 
 #include "Inventory/InventoryToolTip.h"
 #include "Inventory/InventoryItemSlot.h"
-#include "Data/ItemDataStructs.h"
+#include "Inventory/ItemDataStructs.h"
 
 
 void UInventoryToolTip::NativeConstruct()
@@ -47,13 +47,13 @@ void UInventoryToolTip::NativeConstruct()
 	SellValue->SetText(FText::AsNumber(ItemBeingHovered->ItemStatistics.SellValue));
 	ItemDescription->SetText(ItemBeingHovered->TextData.Description);
 
-	const FString WeightInfo=
-		{"Weight:"+ FString::SanitizeFloat(ItemBeingHovered->GetItemStackWeight())};
+	const FString WeightInfo =
+		{"Weight:" + FString::SanitizeFloat(ItemBeingHovered->GetItemStackWeight())};
 	StackWeight->SetText(FText::FromString(WeightInfo));
 
-	if(ItemBeingHovered->ItemNumericData.bIsStackable)
+	if (ItemBeingHovered->ItemNumericData.bIsStackable)
 	{
-		const FString StackInfo=
+		const FString StackInfo =
 			{"Max Stack Size :" + FString::FromInt(ItemBeingHovered->ItemNumericData.MaxStackSize)};
 		MaxStackSize->SetText(FText::FromString(StackInfo));
 	}

@@ -4,10 +4,9 @@
 #include "Player/PopUpPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Character/PlayerCharacter.h"
 #include "GameFramework/Character.h"
 #include "Interaction/InteractionInterface.h"
-#include "QuestSystem/QuestLogComponent.h"
-#include "Character/PlayerCharacter.h"
 
 void APopUpPlayerController::BeginPlay()
 {
@@ -15,7 +14,6 @@ void APopUpPlayerController::BeginPlay()
 
 	check(PlayerContext);
 
-	
 
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<
 		UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
@@ -50,6 +48,9 @@ void APopUpPlayerController::SetupInputComponent()
 		CrouchAction, ETriggerEvent::Completed, this, &APopUpPlayerController::Crouch);
 	EnhancedInputComponent->BindAction(
 		InteractAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Interact);
+	// TODO: crate action for this
+	// EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this,
+	//                                    &APopUpPlayerController::ToogleMenu);
 }
 
 void APopUpPlayerController::Move(const FInputActionValue& Value)
@@ -140,6 +141,22 @@ void APopUpPlayerController::Interact(const FInputActionValue& Value)
 		{
 			Target->InteractWith();
 		}
+	}
+}
+
+void APopUpPlayerController::ToogleMenu()
+{
+	if (const APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(GetPawn()))
+	{
+		PlayerCharacter->HUD->ToogleMenu();
+	}
+}
+
+void APopUpPlayerController::DropItem(UItemBase* ItemToDrop, const int32 QuantityToDrop)
+{
+	if (APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(GetPawn()))
+	{
+		PlayerCharacter->DropItem(ItemToDrop, QuantityToDrop);
 	}
 }
 
