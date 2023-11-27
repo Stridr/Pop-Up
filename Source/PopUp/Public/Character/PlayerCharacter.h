@@ -7,7 +7,6 @@
 #include "Inventory/InventoryComponent.h"
 #include "Interaction/InteractionInterface.h"
 #include "Inventory/InventoryHUD.h"
-#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
 #include "PlayerCharacter.generated.h"
 
 class UQuestLogComponent;
@@ -45,7 +44,7 @@ public:
 
 	// FORCEINLINE bool IsInteracting() const { return GetWorldTimerManager().IsTimerActive(TimerHandle_Interaction); };
 	// FORCEINLINE UInventoryComponent* GetInventory() const { return PlayerInventory; };
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
 	UInventoryComponent* Inventory;
 
@@ -79,7 +78,7 @@ protected:
 	// void BeginInteract();
 	// void EndInteract();
 	// void Interact();
-	void ToogleMenu();
+	void ToggleMenu();
 	virtual void BeginPlay() override;
 
 	// virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

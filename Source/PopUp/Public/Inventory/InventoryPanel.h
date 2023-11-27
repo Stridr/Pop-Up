@@ -28,9 +28,6 @@ public:
 	UWrapBox* InventoryWrapBox;
 
 	UPROPERTY(meta=(BindWidget))
-	UTextBlock* WeightInfo;
-
-	UPROPERTY(meta=(BindWidget))
 	UTextBlock* CapacityInfo;
 
 	UPROPERTY()

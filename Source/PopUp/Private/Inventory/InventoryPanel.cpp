@@ -26,15 +26,9 @@ void UInventoryPanel::NativeOnInitialized()
 
 void UInventoryPanel::SetInfoText() const
 {
-	const FString WeightInfoValue{
-		FString::SanitizeFloat(InventoryReference->GetInventoryTotalWeight()) + "/"
-		+ FString::FromInt(InventoryReference->GetWeightCapacity())
-	};
 	const FString CapacityInfoValue{
-		FString::FromInt(InventoryReference->GetInventoryContents().Num()) + "/"
-		+ FString::FromInt(InventoryReference->GetWeightCapacity())
+		FString::FromInt(InventoryReference->GetInventoryContents().Num())
 	};
-	WeightInfo->SetText(FText::FromString(WeightInfoValue));
 	CapacityInfo->SetText(FText::FromString(CapacityInfoValue));
 }
 

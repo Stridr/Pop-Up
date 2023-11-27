@@ -11,7 +11,7 @@ void UItemBase::ResetItemFlags()
 	bIsPickup = false;
 }
 
-UItemBase::UItemBase() : OwningInventory(nullptr), Quantity(0), ItemType(), ItemQuality(), bIsCopy(false),
+UItemBase::UItemBase() : OwningInventory(nullptr), Quantity(0), bIsCopy(false),
                          bIsPickup(false)
 {
 }
@@ -22,11 +22,8 @@ UItemBase* UItemBase::CreateItemCopy() const
 
 	ItemCopy->ID = this->ID;
 	ItemCopy->Quantity = this->Quantity;
-	ItemCopy->ItemQuality = this->ItemQuality;
-	ItemCopy->ItemType = this->ItemType;
 	ItemCopy->TextData = this->TextData;
 	ItemCopy->ItemNumericData = this->ItemNumericData;
-	ItemCopy->ItemStatistics = this->ItemStatistics;
 	ItemCopy->AssetData = this->AssetData;
 	ItemCopy->bIsCopy = true;
 

@@ -34,9 +34,11 @@ void APickUp::LookAt()
 
 FString APickUp::InteractWith()
 {
+	UE_LOG(LogTemp, Warning, TEXT("InteractWith"));
 	if (const APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(
 		GetWorld()->GetFirstPlayerController()->GetPawn()))
 	{
+		UE_LOG(LogTemp, Warning, TEXT("About to take pickup"));
 		TakePickup(PlayerCharacter);
 	}
 
@@ -57,8 +59,6 @@ void APickUp::InitializePickup(const TSubclassOf<UItemBase> BaseClass, const int
 		ItemReference = NewObject<UItemBase>(this, BaseClass);
 
 		ItemReference->ID = ItemData->ID;
-		ItemReference->ItemType = ItemData->ItemType;
-		ItemReference->ItemQuality = ItemData->ItemQuality;
 		ItemReference->ItemNumericData = ItemData->ItemNumericData;
 		ItemReference->TextData = ItemData->TextData;
 		ItemReference->AssetData = ItemData->AssetData;
@@ -75,7 +75,6 @@ void APickUp::InitializeDrop(UItemBase* ItemToDrop, const int32 InQuantity)
 {
 	ItemReference = ItemToDrop;
 	InQuantity <= 0 ? ItemReference->SetQuantity(1) : ItemReference->SetQuantity(InQuantity);
-	ItemReference->ItemNumericData.Weight = ItemToDrop->GetItemSingleWeight();
 	PickupMesh->SetStaticMesh(ItemToDrop->AssetData.Mesh);
 	UpdateInteractableData();
 }
@@ -118,6 +117,7 @@ void APickUp::UpdateInteractableData()
 
 void APickUp::TakePickup(const APlayerCharacter* Taker)
 {
+	UE_LOG(LogTemp, Warning, TEXT("TakePickup"));
 	if (!IsPendingKillPending())
 	{
 		if (ItemReference)

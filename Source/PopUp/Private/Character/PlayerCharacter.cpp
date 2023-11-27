@@ -35,7 +35,6 @@ APlayerCharacter::APlayerCharacter()
 
 	Inventory = CreateDefaultSubobject<UInventoryComponent>(TEXT("Inventory"));
 	Inventory->SetSlotsCapacity(20);
-	Inventory->SetWeightCapacity(50.0f);
 	Inventory->Activate();
 	// InteractionCheckFrequency = 0.1;
 	// InteractionCheckDistance = 225.0f;
@@ -182,7 +181,7 @@ void APlayerCharacter::Tick(float DeltaSeconds)
 // 	}
 // }
 
-void APlayerCharacter::ToogleMenu()
+void APlayerCharacter::ToggleMenu()
 {
 	HUD->ToogleMenu();
 }

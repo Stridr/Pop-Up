@@ -8,20 +8,16 @@
 
 class APlayerCharacter;
 class UInventoryComponent;
-/**
- * 
- */
+
 UCLASS()
 class POPUP_API UItemBase : public UObject
 {
 	GENERATED_BODY()
 
 public:
-	/////////////////////////////////////
-	///Properties & variables
-	////////////////////////////////////
+	UItemBase();
 
-	//UPROPERTY()
+	UPROPERTY()
 	UInventoryComponent* OwningInventory;
 
 	UPROPERTY(VisibleAnywhere, Category="Item")
@@ -29,15 +25,6 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category="Item")
 	FName ID;
-
-	UPROPERTY(VisibleAnywhere, Category="Item")
-	EItemType ItemType;
-
-	UPROPERTY(VisibleAnywhere, Category="Item")
-	EItemQuality ItemQuality;
-
-	UPROPERTY(VisibleAnywhere, Category="Item")
-	FItemStatistics ItemStatistics;
 
 	UPROPERTY(VisibleAnywhere, Category="Item")
 	FItemTextData TextData;
@@ -51,20 +38,9 @@ public:
 	bool bIsCopy;
 	bool bIsPickup;
 
-
-	/////////////////////////////////////
-	///Functions
-	////////////////////////////////////
-
 	void ResetItemFlags();
-	UItemBase();
+
 	UItemBase* CreateItemCopy() const;
-
-	UFUNCTION(Category="Item")
-	FORCEINLINE float GetItemStackWeight() const { return Quantity * ItemNumericData.Weight; };
-
-	UFUNCTION(Category="Item")
-	FORCEINLINE float GetItemSingleWeight() const { return ItemNumericData.Weight; };
 
 	UFUNCTION(Category="Item")
 	FORCEINLINE float isFullItemStack() const { return Quantity == ItemNumericData.MaxStackSize; };

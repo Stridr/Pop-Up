@@ -50,7 +50,7 @@ void APopUpPlayerController::SetupInputComponent()
 		InteractAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Interact);
 	// TODO: crate action for this
 	// EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this,
-	//                                    &APopUpPlayerController::ToogleMenu);
+	//                                    &APopUpPlayerController::ToggleMenu);
 }
 
 void APopUpPlayerController::Move(const FInputActionValue& Value)
@@ -139,12 +139,13 @@ void APopUpPlayerController::Interact(const FInputActionValue& Value)
 	{
 		if (IInteractionInterface* Target = Cast<IInteractionInterface>(LookAtActor))
 		{
+			UE_LOG(LogTemp, Warning, TEXT("Interact: cast successful"));
 			Target->InteractWith();
 		}
 	}
 }
 
-void APopUpPlayerController::ToogleMenu()
+void APopUpPlayerController::ToggleMenu()
 {
 	if (const APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(GetPawn()))
 	{
@@ -164,8 +165,8 @@ void APopUpPlayerController::InteractTrace()
 {
 	FHitResult HitResult;
 	FVector Start = PlayerCameraManager->GetCameraLocation();
-	FVector ForwardVector = PlayerCameraManager->GetCameraRotation().Vector();
-	FVector End = Start + ForwardVector * 2000.f;
+	FVector ForwardVector = PlayerCameraManager->GetCameraRotation().Vector() * 2000.f;
+	FVector End = Start + ForwardVector;
 	FCollisionQueryParams TraceParams;
 
 	// TODO: currently the capsule component is set to ignore camera trace
@@ -175,7 +176,7 @@ void APopUpPlayerController::InteractTrace()
 		HitResult, Start, End, ECC_Camera, TraceParams
 	))
 	{
-		DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 1, 0, 1);
+		DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 1, 0, 1);
 		LookAtActor = HitResult.GetActor();
 
 		if (LookAtActor->GetClass()->ImplementsInterface(UInteractionInterface::StaticClass()))
