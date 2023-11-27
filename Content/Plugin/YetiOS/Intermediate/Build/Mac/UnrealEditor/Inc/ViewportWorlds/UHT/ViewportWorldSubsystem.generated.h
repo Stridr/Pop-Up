@@ -1,0 +1,66 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+// IWYU pragma: private, include "Global/ViewportWorldSubsystem.h"
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+#ifdef VIEWPORTWORLDS_ViewportWorldSubsystem_generated_h
+#error "ViewportWorldSubsystem.generated.h already included, missing '#pragma once' in ViewportWorldSubsystem.h"
+#endif
+#define VIEWPORTWORLDS_ViewportWorldSubsystem_generated_h
+
+#define FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_SPARSE_DATA
+#define FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_ACCESSORS
+#define FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUViewportWorldSubsystem(); \
+	friend struct Z_Construct_UClass_UViewportWorldSubsystem_Statics; \
+public: \
+	DECLARE_CLASS(UViewportWorldSubsystem, UGameInstanceSubsystem, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/ViewportWorlds"), NO_API) \
+	DECLARE_SERIALIZER(UViewportWorldSubsystem)
+
+
+#define FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UViewportWorldSubsystem(); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UViewportWorldSubsystem(UViewportWorldSubsystem&&); \
+	NO_API UViewportWorldSubsystem(const UViewportWorldSubsystem&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UViewportWorldSubsystem); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UViewportWorldSubsystem); \
+	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UViewportWorldSubsystem) \
+	NO_API virtual ~UViewportWorldSubsystem();
+
+
+#define FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_10_PROLOG
+#define FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_SPARSE_DATA \
+	FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_ACCESSORS \
+	FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_INCLASS_NO_PURE_DECLS \
+	FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h_13_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> VIEWPORTWORLDS_API UClass* StaticClass<class UViewportWorldSubsystem>();
+
+#undef CURRENT_FILE_ID
+#define CURRENT_FILE_ID FID_Build_U5M_Marketplace_Mac_Sync_LocalBuilds_PluginTemp_HostProject_Plugins_OperatingSystemSimulator_Source_ViewportWorlds_Private_Global_ViewportWorldSubsystem_h
+
+
+PRAGMA_ENABLE_DEPRECATION_WARNINGS

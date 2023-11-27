@@ -4,6 +4,7 @@
 #include "Player/PopUpPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Character/PlayerCharacter.h"
 #include "GameFramework/Character.h"
 #include "Interaction/InteractionInterface.h"
 
@@ -12,6 +13,7 @@ void APopUpPlayerController::BeginPlay()
 	Super::BeginPlay();
 
 	check(PlayerContext);
+
 
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<
 		UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
@@ -46,6 +48,9 @@ void APopUpPlayerController::SetupInputComponent()
 		CrouchAction, ETriggerEvent::Completed, this, &APopUpPlayerController::Crouch);
 	EnhancedInputComponent->BindAction(
 		InteractAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Interact);
+	// TODO: crate action for this
+	// EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this,
+	//                                    &APopUpPlayerController::ToggleMenu);
 }
 
 void APopUpPlayerController::Move(const FInputActionValue& Value)
@@ -134,8 +139,25 @@ void APopUpPlayerController::Interact(const FInputActionValue& Value)
 	{
 		if (IInteractionInterface* Target = Cast<IInteractionInterface>(LookAtActor))
 		{
+			UE_LOG(LogTemp, Warning, TEXT("Interact: cast successful"));
 			Target->InteractWith();
 		}
+	}
+}
+
+void APopUpPlayerController::ToggleMenu()
+{
+	if (const APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(GetPawn()))
+	{
+		PlayerCharacter->HUD->ToogleMenu();
+	}
+}
+
+void APopUpPlayerController::DropItem(UItemBase* ItemToDrop, const int32 QuantityToDrop)
+{
+	if (APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(GetPawn()))
+	{
+		PlayerCharacter->DropItem(ItemToDrop, QuantityToDrop);
 	}
 }
 
@@ -143,8 +165,8 @@ void APopUpPlayerController::InteractTrace()
 {
 	FHitResult HitResult;
 	FVector Start = PlayerCameraManager->GetCameraLocation();
-	FVector ForwardVector = PlayerCameraManager->GetCameraRotation().Vector();
-	FVector End = Start + ForwardVector * 2000.f;
+	FVector ForwardVector = PlayerCameraManager->GetCameraRotation().Vector() * 2000.f;
+	FVector End = Start + ForwardVector;
 	FCollisionQueryParams TraceParams;
 
 	// TODO: currently the capsule component is set to ignore camera trace
@@ -154,7 +176,7 @@ void APopUpPlayerController::InteractTrace()
 		HitResult, Start, End, ECC_Camera, TraceParams
 	))
 	{
-		DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 1, 0, 1);
+		DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 1, 0, 1);
 		LookAtActor = HitResult.GetActor();
 
 		if (LookAtActor->GetClass()->ImplementsInterface(UInteractionInterface::StaticClass()))
