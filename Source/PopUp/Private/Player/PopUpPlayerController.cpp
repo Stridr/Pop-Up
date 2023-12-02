@@ -6,7 +6,7 @@
 #include "EnhancedInputComponent.h"
 #include "Character/PlayerCharacter.h"
 #include "GameFramework/Character.h"
-#include "Character/PlayerCharacter.h"
+#include "Interaction/InteractionInterface.h"
 
 void APopUpPlayerController::BeginPlay()
 {
@@ -14,7 +14,6 @@ void APopUpPlayerController::BeginPlay()
 
 	check(PlayerContext);
 
-	
 
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<
 		UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
@@ -22,6 +21,14 @@ void APopUpPlayerController::BeginPlay()
 	check(Subsystem);
 
 	Subsystem->AddMappingContext(PlayerContext, 0);
+}
+
+void APopUpPlayerController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	// TODO: Throttle the trace. It should only be able to happen once per interaction.
+	InteractTrace();
 }
 
 void APopUpPlayerController::SetupInputComponent()
@@ -39,7 +46,11 @@ void APopUpPlayerController::SetupInputComponent()
 		JumpAction, ETriggerEvent::Completed, this, &APopUpPlayerController::StopJumping);
 	EnhancedInputComponent->BindAction(
 		CrouchAction, ETriggerEvent::Completed, this, &APopUpPlayerController::Crouch);
-	
+	EnhancedInputComponent->BindAction(
+		InteractAction, ETriggerEvent::Triggered, this, &APopUpPlayerController::Interact);
+	// TODO: crate action for this
+	// EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this,
+	//                                    &APopUpPlayerController::ToggleMenu);
 }
 
 void APopUpPlayerController::Move(const FInputActionValue& Value)
@@ -124,5 +135,60 @@ void APopUpPlayerController::Crouch(const FInputActionValue& Value)
 
 void APopUpPlayerController::Interact(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Interact"));
+	if (LookAtActor)
+	{
+		if (IInteractionInterface* Target = Cast<IInteractionInterface>(LookAtActor))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Interact: cast successful"));
+			Target->InteractWith();
+		}
+	}
+}
+
+void APopUpPlayerController::ToggleMenu()
+{
+	if (const APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(GetPawn()))
+	{
+		PlayerCharacter->HUD->ToogleMenu();
+	}
+}
+
+void APopUpPlayerController::DropItem(UItemBase* ItemToDrop, const int32 QuantityToDrop)
+{
+	if (APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(GetPawn()))
+	{
+		PlayerCharacter->DropItem(ItemToDrop, QuantityToDrop);
+	}
+}
+
+void APopUpPlayerController::InteractTrace()
+{
+	FHitResult HitResult;
+	FVector Start = PlayerCameraManager->GetCameraLocation();
+	FVector ForwardVector = PlayerCameraManager->GetCameraRotation().Vector() * 2000.f;
+	FVector End = Start + ForwardVector;
+	FCollisionQueryParams TraceParams;
+
+	// TODO: currently the capsule component is set to ignore camera trace
+	// this should be fine since the player mesh still blocks it, but it in
+	// case this causes issues we might have to set up a custom trace channel
+	if (GetWorld()->LineTraceSingleByChannel(
+		HitResult, Start, End, ECC_Camera, TraceParams
+	))
+	{
+		DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 1, 0, 1);
+		LookAtActor = HitResult.GetActor();
+
+		if (LookAtActor->GetClass()->ImplementsInterface(UInteractionInterface::StaticClass()))
+		{
+			if (IInteractionInterface* Target = Cast<IInteractionInterface>(LookAtActor))
+			{
+				Target->LookAt();
+			}
+		}
+		else
+		{
+			LookAtActor = nullptr;
+		}
+	}
 }

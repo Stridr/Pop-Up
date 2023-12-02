@@ -1,0 +1,55 @@
+// Copyright PopUp
+
+
+#include "QuestSystem/QuestGiverComponent.h"
+
+#include "Character/PlayerCharacter.h"
+#include "Kismet/GameplayStatics.h"
+#include "QuestSystem/QuestLogComponent.h"
+
+UQuestGiverComponent::UQuestGiverComponent()
+{
+	PrimaryComponentTick.bCanEverTick = true;
+}
+
+
+// Called when the game starts
+void UQuestGiverComponent::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
+void UQuestGiverComponent::LookAt()
+{
+	// UE_LOG(LogTemp, Warning, TEXT("Looking at Quest Giver"));
+}
+
+
+FString UQuestGiverComponent::InteractWith()
+{
+	ACharacter* Character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+	check(Character);
+
+	const APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(Character);
+	check(PlayerCharacter);
+
+	if (!PlayerCharacter->QuestLog->QueryActiveQuest(QuestData.RowName))
+	{
+		DisplayQuest(QuestData.RowName);
+		PlayerCharacter->QuestLog->AddNewQuest(QuestData.RowName);
+	}
+
+	return GetOwner()->GetName();
+}
+
+void UQuestGiverComponent::TickComponent(float DeltaTime, ELevelTick TickType,
+                                         FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}
+
+void UQuestGiverComponent::DisplayQuest(const FName QuestId) const
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan,
+	                                 FString::Printf(TEXT("Displaying Quest: %s"), *QuestId.ToString()));
+}

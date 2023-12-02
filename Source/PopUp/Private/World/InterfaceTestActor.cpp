@@ -6,14 +6,12 @@
 // Sets default values
 AInterfaceTestActor::AInterfaceTestActor()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
 
 	SetRootComponent(Mesh);
-	
-
 }
 
 // Called when the game starts or when spawned
@@ -28,39 +26,48 @@ void AInterfaceTestActor::BeginPlay()
 void AInterfaceTestActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
-void AInterfaceTestActor::BeginFocus()
+FString AInterfaceTestActor::InteractWith()
 {
-	if(Mesh)
-	{
-		Mesh->SetRenderCustomDepth(true);
-	}
+	return GetName();
 }
 
-void AInterfaceTestActor::EndFocus()
+void AInterfaceTestActor::LookAt()
 {
-	if(Mesh)
-	{
-		Mesh->SetRenderCustomDepth(false);
-	}
-	
+	// nothing yet
 }
 
-void AInterfaceTestActor::BeginInteract()
-{
-	UE_LOG(LogTemp,Warning,TEXT("Calling beging interact override on interface test actor "));
-	
-}
+// void AInterfaceTestActor::BeginFocus()
+// {
+// 	if(Mesh)
+// 	{
+// 		Mesh->SetRenderCustomDepth(true);
+// 	}
+// }
+//
+// void AInterfaceTestActor::EndFocus()
+// {
+// 	if(Mesh)
+// 	{
+// 		Mesh->SetRenderCustomDepth(false);
+// 	}
+// 	
+// }
+//
+// void AInterfaceTestActor::BeginInteract()
+// {
+// 	UE_LOG(LogTemp,Warning,TEXT("Calling beging interact override on interface test actor "));
+// 	
+// }
+//
+// void AInterfaceTestActor::EndInteract()
+// {
+// 	UE_LOG(LogTemp,Warning,TEXT("Calling beging interact override on interface test actor "));
+// }
 
-void AInterfaceTestActor::EndInteract()
-{
-	UE_LOG(LogTemp,Warning,TEXT("Calling beging interact override on interface test actor "));
-}
-
-void AInterfaceTestActor::Interact(APlayerCharacter* PlayerCharacter)
-{
-	UE_LOG(LogTemp,Warning,TEXT("Calling beging interact override on interface test actor "));
-}
-
+// void AInterfaceTestActor::Interact(APlayerCharacter* PlayerCharacter)
+// {
+// 	UE_LOG(LogTemp,Warning,TEXT("Calling beging interact override on interface test actor "));
+// }
+//

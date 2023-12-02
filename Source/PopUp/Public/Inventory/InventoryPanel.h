@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PopUp/Public/Components/InventoryComponent.h"
+#include "Inventory/InventoryComponent.h"
 #include "InventoryItemSlot.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
@@ -21,15 +21,11 @@ class POPUP_API UInventoryPanel : public UUserWidget
 	GENERATED_BODY()
 
 public:
-
 	UFUNCTION()
 	void RefreshInventory();
 
 	UPROPERTY(meta=(BindWidget))
 	UWrapBox* InventoryWrapBox;
-
-	UPROPERTY(meta=(BindWidget))
-	UTextBlock* WeightInfo;
 
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* CapacityInfo;
@@ -44,9 +40,8 @@ public:
 	TSubclassOf<UInventoryItemSlot> InventorySlotClass;
 
 protected:
-
 	void SetInfoText() const;
 	virtual void NativeOnInitialized() override;
 	virtual bool NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent,
-		UDragDropOperation* InOperation) override;
+	                          UDragDropOperation* InOperation) override;
 };

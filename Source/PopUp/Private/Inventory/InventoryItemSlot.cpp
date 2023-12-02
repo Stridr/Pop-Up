@@ -10,9 +10,9 @@
 void UInventoryItemSlot::NativeOnInitialized()
 {
 	Super::NativeOnInitialized();
-	if(ToolTipClass)
+	if (ToolTipClass)
 	{
-		UInventoryToolTip* ToolTip=CreateWidget<UInventoryToolTip>(this,ToolTipClass);
+		UInventoryToolTip* ToolTip = CreateWidget<UInventoryToolTip>(this, ToolTipClass);
 		ToolTip->InventorySlotBeingHovered = this;
 		SetToolTip(ToolTip);
 	}
@@ -21,36 +21,16 @@ void UInventoryItemSlot::NativeOnInitialized()
 void UInventoryItemSlot::NativeConstruct()
 {
 	Super::NativeConstruct();
-	if(ItemReference)
+	if (ItemReference)
 	{
-		switch (ItemReference->ItemQuality)
-		{
-		case EItemQuality::Shoody:
-			ItemBorder->SetBrushColor(FLinearColor::Gray);
-			break;
-		case EItemQuality::Common:
-			ItemBorder->SetBrushColor(FLinearColor::Green);
-			break;
-		case EItemQuality::Quality:
-			ItemBorder->SetBrushColor(FLinearColor::Blue);
-			break;
-		case EItemQuality::Masterwork:
-			ItemBorder->SetBrushColor(FLinearColor::Yellow);
-			break;
-		case EItemQuality::Grandmaster:
-			ItemBorder->SetBrushColor(FLinearColor(100.0f,65.0f,0.0f,1.0f));//orange 
-			break;
-		default: ;
-		}
 		ItemIcon->SetBrushFromTexture(ItemReference->AssetData.Icon);
-		if(ItemReference->ItemNumericData.bIsStackable)
+		if (ItemReference->ItemNumericData.bIsStackable)
 		{
 			ItemQuantity->SetText(FText::AsNumber(ItemReference->Quantity));
 		}
 		else
 		{
 			ItemQuantity->SetVisibility(ESlateVisibility::Collapsed);
-
 		}
 	}
 }
@@ -59,9 +39,9 @@ FReply UInventoryItemSlot::NativeOnMouseButtonDown(const FGeometry& InGeometry, 
 {
 	FReply Reply = Super::NativeOnMouseButtonDown(InGeometry, InMouseEvent);
 
-	if(InMouseEvent.GetEffectingButton()==EKeys::LeftMouseButton)
+	if (InMouseEvent.GetEffectingButton() == EKeys::LeftMouseButton)
 	{
-		return Reply.Handled().DetectDrag(TakeWidget(),EKeys::LeftMouseButton);
+		return Reply.Handled().DetectDrag(TakeWidget(), EKeys::LeftMouseButton);
 	}
 
 	//sub menu on right click will happen here 
@@ -74,19 +54,19 @@ void UInventoryItemSlot::NativeOnMouseLeave(const FPointerEvent& InMouseEvent)
 }
 
 void UInventoryItemSlot::NativeOnDragDetected(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent,
-	UDragDropOperation*& OutOperation)
+                                              UDragDropOperation*& OutOperation)
 {
 	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperation);
-	if(DragItemVisualClass)
+	if (DragItemVisualClass)
 	{
-		UDragItemVisual* DragVisual = CreateWidget<UDragItemVisual>(this,DragItemVisualClass);
+		UDragItemVisual* DragVisual = CreateWidget<UDragItemVisual>(this, DragItemVisualClass);
 		DragVisual->ItemIcon->SetBrushFromTexture(ItemReference->AssetData.Icon);
 		DragVisual->ItemBorder->SetBrushColor(ItemBorder->GetBrushColor());
 		DragVisual->ItemQuantity->SetText(FText::AsNumber(ItemReference->Quantity));
 
 		ItemReference->ItemNumericData.bIsStackable
-		? DragVisual->ItemQuantity->SetText(FText::AsNumber(ItemReference->Quantity))
-		: DragVisual->ItemQuantity->SetVisibility(ESlateVisibility::Collapsed);
+			? DragVisual->ItemQuantity->SetText(FText::AsNumber(ItemReference->Quantity))
+			: DragVisual->ItemQuantity->SetVisibility(ESlateVisibility::Collapsed);
 
 		UItemDragDropOperation* DragItemOperation = NewObject<UItemDragDropOperation>();
 		DragItemOperation->SourceItem = ItemReference;
@@ -100,7 +80,7 @@ void UInventoryItemSlot::NativeOnDragDetected(const FGeometry& InGeometry, const
 }
 
 bool UInventoryItemSlot::NativeOnDrop(const FGeometry& InGeometry, const FDragDropEvent& InDragDropEvent,
-	UDragDropOperation* InOperation)
+                                      UDragDropOperation* InOperation)
 {
 	return Super::NativeOnDrop(InGeometry, InDragDropEvent, InOperation);
 }

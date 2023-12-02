@@ -4,35 +4,29 @@
 
 #include "CoreMinimal.h"
 #include "Character/CharacterBase.h"
-#include "Components/InventoryComponent.h"
-#include "Interface/InteractionInterface.h"
-#include "Interface/InventoryHUD.h"
-#include "PopUp/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+#include "Inventory/InventoryComponent.h"
+#include "Interaction/InteractionInterface.h"
+#include "Inventory/InventoryHUD.h"
 #include "PlayerCharacter.generated.h"
 
-
-
-
+class UQuestLogComponent;
 class USpringArmComponent;
 class UCameraComponent;
 
-USTRUCT()
-struct FInteractionData
-{
-	GENERATED_BODY()
-
-	FInteractionData() :CurrentInteractable(nullptr),LastInteractionCheckTime(0.0f)
-	{
-		
-	};
-	UPROPERTY()
-	AActor* CurrentInteractable;
-
-	UPROPERTY()
-	float LastInteractionCheckTime;
-
-	
-};
+// USTRUCT()
+// struct FInteractionData
+// {
+// 	GENERATED_BODY()
+//
+// 	FInteractionData() : CurrentInteractable(nullptr), LastInteractionCheckTime(0.0f)
+// 	{
+// 	};
+// 	UPROPERTY()
+// 	AActor* CurrentInteractable;
+//
+// 	UPROPERTY()
+// 	float LastInteractionCheckTime;
+// };
 
 UCLASS()
 class POPUP_API APlayerCharacter : public ACharacterBase
@@ -42,29 +36,30 @@ class POPUP_API APlayerCharacter : public ACharacterBase
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* PlayerCamera;
 
-	
-
 public:
 	APlayerCharacter();
 
-	FORCEINLINE bool IsInteracting() const {return GetWorldTimerManager().IsTimerActive(TimerHandle_Interaction);};
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quest Log")
+	UQuestLogComponent* QuestLog;
 
-	FORCEINLINE UInventoryComponent* GetInventory()const {return PlayerInventory;};
+	// FORCEINLINE bool IsInteracting() const { return GetWorldTimerManager().IsTimerActive(TimerHandle_Interaction); };
+	// FORCEINLINE UInventoryComponent* GetInventory() const { return PlayerInventory; };
 
-	void UpdateInteractionWidget() const ;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
+	UInventoryComponent* Inventory;
+
+	void UpdateInteractionWidget() const;
 
 	void DropItem(UItemBase* ItemToDrop, const int32 QuantityToDrop);
 
 	virtual void Tick(float DeltaSeconds) override;
 
-protected:
-
-
 	UPROPERTY()
 	AInventoryHUD* HUD;
-		
-	UPROPERTY(VisibleAnywhere,Category="Character | Interaction")
-	TScriptInterface<IInteractionInterface>TargetInteractable;
+
+protected:
+	UPROPERTY(VisibleAnywhere, Category="Character | Interaction")
+	TScriptInterface<IInteractionInterface> TargetInteractable;
 
 	float InteractionCheckFrequency;
 
@@ -72,22 +67,19 @@ protected:
 
 	FTimerHandle TimerHandle_Interaction;
 
-	FInteractionData InteractionData;
+	// FInteractionData InteractionData;
 
-	UPROPERTY(VisibleAnywhere,Category="Character | Inventory")
+	UPROPERTY(VisibleAnywhere, Category="Character | Inventory")
 	UInventoryComponent* PlayerInventory;
 
-	
-
-
-	void PerformInteractionCheck();
-	void FoundInteractable(AActor* NewInteractable);
-	void NoInteractableFound();
-	void BeginInteract();
-	void EndInteract();
-	void Interact();
-	void ToogleMenu();
+	// void PerformInteractionCheck();
+	// void FoundInteractable(AActor* NewInteractable);
+	// void NoInteractableFound();
+	// void BeginInteract();
+	// void EndInteract();
+	// void Interact();
+	void ToggleMenu();
 	virtual void BeginPlay() override;
 
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	// virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 };
