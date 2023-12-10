@@ -6,7 +6,8 @@
 #include "UObject/Interface.h"
 #include "InteractionInterface.generated.h"
 
-class APlayerCharacter;
+class APopUpPlayerController;
+
 
 UENUM()
 enum class EInteractableType: uint8
@@ -17,10 +18,6 @@ enum class EInteractableType: uint8
 	Toggle UMETA(DisplayName = "Toggle"),
 	Container UMETA(DisplayName = "Container")
 };
-
-
-
-
 USTRUCT()
 struct FInteractableData
 {
@@ -56,8 +53,6 @@ struct FInteractableData
 
 	
 };
-
-
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
 class UInteractionInterface : public UInterface
@@ -78,7 +73,7 @@ public:
 	virtual void EndFocus();
 	virtual void BeginInteract();
 	virtual void EndInteract();
-	virtual void Interact(APlayerCharacter* PlayerCharacter);
+	virtual void Interact(APopUpPlayerController* PlayerCharacter);
 
 	FInteractableData InteractableData;
 

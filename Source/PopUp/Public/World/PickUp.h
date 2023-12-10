@@ -3,9 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Character/PlayerCharacter.h"
 #include "Interface/InteractionInterface.h"
 #include "GameFramework/Actor.h"
+#include "Player/PopUpPlayerController.h"
 #include "PickUp.generated.h"
 
 class UDataTable;
@@ -18,10 +18,6 @@ class POPUP_API APickUp : public AActor,public  IInteractionInterface
 	
 public:	
 	//Properties&variables
-
-
-
-	
 
 	//Functions
 	APickUp();
@@ -62,11 +58,12 @@ protected:
 	//Functions
 	
 	virtual void BeginPlay() override;
-	virtual void Interact(APlayerCharacter* PlayerCharacter) override;
+	virtual void Interact(APopUpPlayerController* PlayerCharacter) override;
 	void UpdateInteractableData();
 
 	
-	void TakePickup(const APlayerCharacter* Taker);
+	void TakePickup(const APopUpPlayerController* Taker);
+	
 #if WITH_EDITOR
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif

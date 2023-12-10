@@ -10,7 +10,7 @@
 #include "Components/WrapBox.h"
 #include "InventoryPanel.generated.h"
 
-class APlayerCharacter;
+class APopUpPlayerController;
 
 /**
  * 
@@ -35,7 +35,7 @@ public:
 	UTextBlock* CapacityInfo;
 
 	UPROPERTY()
-	APlayerCharacter* PlayerCharacter;
+	APopUpPlayerController* PlayerCharacter;
 
 	UPROPERTY()
 	UInventoryComponent* InventoryReference;

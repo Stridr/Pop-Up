@@ -7,7 +7,7 @@
 #include "GameFramework/Actor.h"
 #include "InterfaceTestActor.generated.h"
 
-class APlayerCharacter;
+class APopUpPlayerController;
 
 UCLASS()
 class POPUP_API AInterfaceTestActor : public AActor,public IInteractionInterface
@@ -35,5 +35,5 @@ protected:
 	virtual void EndFocus() override;
 	virtual void BeginInteract() override;
 	virtual void EndInteract() override;
-	virtual void Interact(APlayerCharacter* PlayerCharacter) override;
+	virtual void Interact(APopUpPlayerController* PlayerCharacter) override;
 };

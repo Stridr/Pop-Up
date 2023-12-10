@@ -26,12 +26,6 @@ public:
 	
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* ItemType;
-	
-	UPROPERTY(meta=(BindWidget))
-	UTextBlock* DamageValue;
-	
-	UPROPERTY(meta=(BindWidget))
-	UTextBlock* ArmorRating;
 
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* UsageText;
@@ -44,9 +38,6 @@ public:
 
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* MaxStackSizeText;
-	
-	UPROPERTY(meta=(BindWidget))
-	UTextBlock* SellValue;
 	
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* StackWeight;

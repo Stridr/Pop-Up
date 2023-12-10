@@ -14,7 +14,6 @@ UENUM(BlueprintType)
 enum class EItemAddResult : uint8
 {
 	//IAR= item add result
-	
 	IAR_NOItemAdded UMETA(DisplayName = "No item added"),
 	IAR_PartialAmountItemAdded UMETA(DisplayName = "Partial amount of item added"),
 	IAR_AllItemAdded UMETA(DisplayName = "all of item added") 
@@ -66,9 +65,6 @@ struct FItemAddResult
 		return AddedAllResult;
 
 	};
-	
-	
-	
 };
 
 
@@ -147,9 +143,6 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere,Category= "Inventory")
 	TArray<TObjectPtr<UItemBase>> InventoryContents;
-	
-
-
 	
 	/////////////////////////////////////
 	///Functions

@@ -34,12 +34,6 @@ public:
 	EItemType ItemType;
 	
 	UPROPERTY(VisibleAnywhere,Category="Item")
-	EItemQuality ItemQuality;
-	
-	UPROPERTY(VisibleAnywhere,Category="Item")
-	FItemStatistics ItemStatistics;
-	
-	UPROPERTY(VisibleAnywhere,Category="Item")
 	FItemTextData TextData;
 	
 	UPROPERTY(VisibleAnywhere,Category="Item")
