@@ -5,14 +5,15 @@
 #include "CoreMinimal.h"
 #include "InputActionValue.h"
 #include "GameFramework/PlayerController.h"
+#include "Interaction/InteractionInterface.h"
 #include "PopUpPlayerController.generated.h"
 
-class AInventoryHUD;
-class UItemBase;
 class IInteractionInterface;
 class UInputAction;
 class UInputMappingContext;
 struct FInputActionValue;
+
+// DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FObjectiveIDCalled, FString, ObjectiveId);
 
 UCLASS(Blueprintable)
 class POPUP_API APopUpPlayerController : public APlayerController
@@ -30,6 +31,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category="CharacterTurning")
 	bool IsTurningLeft = false;
+
+	// UPROPERTY(BlueprintAssignable)
+	// FObjectiveIDCalled OnObjectiveIDCalled;
 
 private:
 	UPROPERTY(EditAnywhere, Category="Input")
@@ -56,15 +60,10 @@ private:
 	void StopJumping(const FInputActionValue& Value);
 	void Crouch(const FInputActionValue& Value);
 	void Interact(const FInputActionValue& Value);
-	void ToggleMenu();
-	void DropItem(UItemBase* ItemToDrop, const int32 QuantityToDrop);
 
 	UFUNCTION()
 	void InteractTrace();
 
 	UPROPERTY()
 	AActor* LookAtActor = nullptr;
-
-	UPROPERTY()
-	AInventoryHUD* HUD;
 };

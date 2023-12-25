@@ -21,10 +21,6 @@ ANPCBase::ANPCBase()
 
 	QuestGiverComponent = CreateDefaultSubobject<UQuestGiverComponent>(TEXT("QuestGiverComponent"));
 	QuestGiverComponent->Activate();
-
-	InteractableData.Name = FText::FromString(GetName());
-	InteractableData.Action = FText::FromString("Talk");
-	InteractableData.InteractableType = EInteractableType::NonPlayerCharacter;
 }
 
 // Called when the game starts or when spawned
@@ -52,7 +48,6 @@ void ANPCBase::LookAt()
 
 FString ANPCBase::InteractWith()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Interacting with NPCBase"));
 	QuestGiverComponent->InteractWith();
-	return InteractableData.Name.ToString();
+	return GetName();
 }

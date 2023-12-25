@@ -42,7 +42,4 @@ private:
 
 	UPROPERTY(meta=(AllowPrivateAccess = "true"), EditAnywhere, BlueprintReadWrite, Category= "Components")
 	USkeletalMeshComponent* Mesh;
-
-	UPROPERTY()
-	FInteractableData InteractableData;
 };
